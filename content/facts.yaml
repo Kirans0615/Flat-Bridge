@@ -1,0 +1,163 @@
+# Single source of truth for every number and hard fact on the site (BRIEF §11.2).
+# No value is ever typed into a component.
+#
+# Schema:
+#   key / value / label / as_of / source / source_quote / verified
+#
+# verified: false
+#   · real build  → renders NOTHING (not a placeholder — nothing)
+#   · demo build  → renders with a dotted underline and a hover note naming
+#                   what needs confirming, so the owner reviews the finished
+#                   design and the outstanding-figures checklist in one pass
+#
+# STANDARD FOR verified: true — the client, or a client document, confirmed it.
+# Consistency across the old site is NOT verification: the old site is
+# consistently wrong about several things. Nothing below currently meets the
+# standard, so every entry is verified: false pending client sign-off.
+
+facts:
+  # ---------------------------------------------------------------------
+  # Identity facts. Asserted declaratively in BRIEF §2, which is the strongest
+  # source we have — but the brief may itself have been written from the old
+  # site, so none is independently confirmed. Demoted 2026-09-05 (see D-007).
+  # ---------------------------------------------------------------------
+  - key: founded
+    value: 1997
+    label: "Operating since"
+    as_of: null
+    source: "BRIEF.md §2 and §7.2; old site hero"
+    source_quote: >
+      BRIEF §2: "a nearshore supply-chain and logistics BPO headquartered in
+      Mandeville, Jamaica, operating since 1997" / "Founded 1997".
+      Audit: old site hero reads "BRIDGING THE GAP Since 1997".
+      NOT independently confirmed — the brief may derive from the site.
+    verified: false
+
+  - key: phone
+    value: "+17542738895"
+    label: "Phone"
+    as_of: null
+    source: "BRIEF.md §2; audit of old site header"
+    source_quote: >
+      BRIEF §2: "Phone +1 754 273-8895". Audit: "The top bar is dark charcoal
+      with phone (+1 754 273-8895)" and separately notes the FOOTER link is
+      wired to a placeholder (tel:+012 (345) 556 99) "even though it displays
+      the real number" — that "real" is the auditor's inference, not a
+      confirmation. Number has not been dialled. A US +1-754 (Florida) number
+      for a Jamaica-headquartered company is plausible for a nearshore BPO but
+      worth confirming it is the line that should ring.
+    verified: false
+
+  - key: email
+    value: "sales@goflatbridge.com"
+    label: "Email"
+    as_of: null
+    source: "Supplied by client 2026-09-05; matches live site header and footer"
+    source_quote: >
+      Appears in the site header utility row and footer as
+      "sales@goflatbridge.com". Not independently confirmed as the monitored
+      inbox for inbound sales enquiries.
+    verified: false
+
+  - key: hq_city
+    value: "Mandeville, Jamaica"
+    label: "Headquarters"
+    as_of: null
+    source: "BRIEF.md §2; old site header"
+    source_quote: >
+      BRIEF §2: "headquartered in Mandeville, Jamaica". Audit: header shows
+      "Mandeville, JM". City only — no street address exists anywhere in either
+      document, and LocalBusiness schema plus the contact map both need one.
+      See OPEN-QUESTIONS Q10.
+    verified: false
+
+  # ---------------------------------------------------------------------
+  # Performance claims. All inherited from the old site, all conflicting or
+  # unsourced. BRIEF §11.2 flags these as requiring client resolution.
+  # ---------------------------------------------------------------------
+  - key: years_operating
+    value: null
+    label: "Years operating"
+    as_of: null
+    source: null
+    source_quote: >
+      Home says "25+ Years Experience"; footer says "75 years of combined
+      experience". Different metrics or a contradiction? Calendar years is
+      derivable from `founded`; combined staff-years is not.
+    verified: false
+
+  - key: client_retention
+    value: null
+    label: "Client retention"
+    as_of: null
+    source: null
+    source_quote: >
+      Home stats band: 100% client retention. About page: 98% client
+      satisfaction. Different metrics, or one number restated wrongly?
+    verified: false
+
+  - key: loads_processed
+    value: null
+    label: "Loads processed"
+    as_of: null
+    source: null
+    source_quote: >
+      "75,000+ loads processed" on home and About. Cumulative since 1997 or
+      annual? As of what date?
+    verified: false
+
+  - key: client_acceptance_rate
+    value: null
+    label: "Client acceptance rate"
+    as_of: null
+    source: null
+    source_quote: '"94%+ Clients Acceptance Rate" on the home stats band. Measured how, over what period?'
+    verified: false
+
+  - key: on_time_deliveries
+    value: null
+    label: "On-time deliveries"
+    as_of: null
+    source: null
+    source_quote: '"92%+ On-Time Deliveries" on the home stats band. Measured how, over what period?'
+    verified: false
+
+  - key: employee_cost_reduction
+    value: null
+    label: "Employee cost reduction"
+    as_of: null
+    source: null
+    source_quote: >
+      "Reducing employee costs by up to 60%" — the only accordion item on the
+      old site with real copy. Needs substantiation before it can headline, and
+      it underpins the §7.13 savings calculator's central claim.
+    verified: false
+
+  - key: invoice_error_rate
+    value: null
+    label: "Invoice error rate"
+    as_of: null
+    source: null
+    source_quote: >
+      "10,000+ invoices a year, ~25% containing errors" from the Freight Audit
+      copy. Source unknown. Strongest freight-audit proof point if real.
+    verified: false
+
+  - key: headcount_band
+    value: null
+    label: "Team size"
+    as_of: null
+    source: null
+    source_quote: "Not stated anywhere on the old site. See OPEN-QUESTIONS Q8."
+    verified: false
+
+  - key: coverage_window
+    value: null
+    label: "Coverage hours"
+    as_of: null
+    source: null
+    source_quote: >
+      Old site implies 24/7 via a "Need Immediate Support Or Any Help?" band but
+      never states hours. The entire nearshore wedge depends on this being
+      precise. See OPEN-QUESTIONS Q7.
+    verified: false
