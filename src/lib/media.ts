@@ -67,6 +67,50 @@ export const media = {
     "1600": `${LOCAL}/vessel-bow-1600.webp`,
     "2400": `${LOCAL}/vessel-bow-2400.webp`,
   },
+  /** Sunlit container yard, aerial — Advantage bg (Kiran, 2026-09-23; Pexels, Kelly). */
+  advantageYard: {
+    "480": `${LOCAL}/advantage-kelly-480.webp`,
+    "900": `${LOCAL}/advantage-kelly-900.webp`,
+    "1600": `${LOCAL}/advantage-kelly-1600.webp`,
+    "2400": `${LOCAL}/advantage-kelly-2400.webp`,
+  },
+  // Per-sector photos (Kiran, 2026-09-23), one per sector page + homepage row.
+  sectorTrucking: {
+    "480": `${LOCAL}/sector-trucking-480.webp`,
+    "900": `${LOCAL}/sector-trucking-900.webp`,
+    "1600": `${LOCAL}/sector-trucking-1600.webp`,
+    "2400": `${LOCAL}/sector-trucking-2400.webp`,
+  },
+  sectorBrokers: {
+    "480": `${LOCAL}/sector-brokers-480.webp`,
+    "900": `${LOCAL}/sector-brokers-900.webp`,
+    "1600": `${LOCAL}/sector-brokers-1600.webp`,
+    "2400": `${LOCAL}/sector-brokers-2400.webp`,
+  },
+  sectorWarehouse: {
+    "480": `${LOCAL}/sector-warehouse-480.webp`,
+    "900": `${LOCAL}/sector-warehouse-900.webp`,
+    "1600": `${LOCAL}/sector-warehouse-1600.webp`,
+    "2400": `${LOCAL}/sector-warehouse-2400.webp`,
+  },
+  sectorIntermodal: {
+    "480": `${LOCAL}/sector-intermodal-480.webp`,
+    "900": `${LOCAL}/sector-intermodal-900.webp`,
+    "1600": `${LOCAL}/sector-intermodal-1600.webp`,
+    "2400": `${LOCAL}/sector-intermodal-2400.webp`,
+  },
+  sectorThreepl: {
+    "480": `${LOCAL}/sector-threepl-480.webp`,
+    "900": `${LOCAL}/sector-threepl-900.webp`,
+    "1600": `${LOCAL}/sector-threepl-1600.webp`,
+    "2400": `${LOCAL}/sector-threepl-2400.webp`,
+  },
+  sectorShippers: {
+    "480": `${LOCAL}/sector-shippers-480.webp`,
+    "900": `${LOCAL}/sector-shippers-900.webp`,
+    "1600": `${LOCAL}/sector-shippers-1600.webp`,
+    "2400": `${LOCAL}/sector-shippers-2400.webp`,
+  },
 } as const;
 
 /** Fallback source used only if a processed local file never landed (Plan B, brief §3.4). */

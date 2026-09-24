@@ -9,18 +9,15 @@ import { cn } from "@/lib/utils";
  * brief §8.4 — same shape as Differentiators, mirrored: heading right, body
  * left, so the two ink sections in a row don't read as a repeated template.
  *
- * Background: a container-ship bow photo (Kiran, 2026-09-10), distinct from
- * Differentiators' port-at-night photo above it. Heavy overlay per the
- * original ask, plus a green duotone tint (the source photo's natural reds/
- * blues/greens on its stacked containers would otherwise fight the site's
- * "green is load-bearing only" rule) and a blur — the source file is a
- * small 370×523 stock thumbnail, and blurring it hides the upscale rather
- * than showing it off sharp and pixelated.
+ * Background: sunlit aerial container-yard photo (Kiran, 2026-09-23), replacing
+ * the earlier ship-bow thumbnail. High-res source, so no blur/duotone; a
+ * flat 0.82 ink overlay (no bottom gradient) keeps the photo clearly visible while the text
+ * stays legible.
  */
 export default function Advantage() {
   return (
     <Section tone="ink" id="advantage" className="overflow-hidden">
-      <SectionPhotoBg src={media.vesselBow} overlayOpacity={0.8} duotone blur />
+      <SectionPhotoBg src={media.advantageYard} overlayOpacity={0.82} gradient={false} />
 
       <div className="relative z-10 grid grid-cols-1 gap-12 md:grid-cols-12">
         <div className="md:col-span-7 md:col-start-1">

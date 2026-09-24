@@ -18,6 +18,9 @@ interface SectionPhotoBgProps {
   /** Softens a low-resolution source so it doesn't read as pixelated when
    * stretched to full-bleed section-background size. */
   blur?: boolean;
+  /** Directional ink gradient (darkens toward the bottom). Turn off when the
+   * photo should read evenly across the whole section. Defaults to on. */
+  gradient?: boolean;
 }
 
 /**
@@ -34,6 +37,7 @@ export function SectionPhotoBg({
   overlayOpacity = 0.8,
   duotone = false,
   blur = false,
+  gradient = true,
 }: SectionPhotoBgProps) {
   return (
     <div aria-hidden="true" className={cn("absolute inset-0 z-0 overflow-hidden", className)}>
@@ -52,13 +56,15 @@ export function SectionPhotoBg({
       ) : null}
       {/* Ink wash plus a directional gradient for depth. */}
       <div className="absolute inset-0 bg-[var(--color-ink)]" style={{ opacity: overlayOpacity }} />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(5,18,26,0.5) 0%, rgba(5,18,26,0.75) 55%, var(--color-ink) 100%)",
-        }}
-      />
+      {gradient ? (
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(5,18,26,0.5) 0%, rgba(5,18,26,0.75) 55%, var(--color-ink) 100%)",
+          }}
+        />
+      ) : null}
     </div>
   );
 }

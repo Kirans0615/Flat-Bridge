@@ -24,7 +24,16 @@ export interface Sector {
   benefits: { label: string; body: string }[];
   challenge: { painPoints: string; background: string; solution: string[] };
   serviceSlugs: string[];
-  imageKey: "port" | "yard" | "jamaica";
+  imageKey:
+    | "port"
+    | "yard"
+    | "jamaica"
+    | "sectorTrucking"
+    | "sectorBrokers"
+    | "sectorWarehouse"
+    | "sectorIntermodal"
+    | "sectorThreepl"
+    | "sectorShippers";
   quote: { text: string; author: string };
   rewrittenNote?: string;
   placeholder?: boolean;
@@ -77,7 +86,7 @@ export const sectors: Sector[] = [
       solution: servicesFor("trucking-drayage"),
     },
     serviceSlugs: servicesFor("trucking-drayage"),
-    imageKey: "yard",
+    imageKey: "sectorTrucking",
     quote: jpMorganQuote,
     placeholder: true,
   },
@@ -97,7 +106,7 @@ export const sectors: Sector[] = [
       solution: servicesFor("freight-brokers-forwarders"),
     },
     serviceSlugs: servicesFor("freight-brokers-forwarders"),
-    imageKey: "port",
+    imageKey: "sectorBrokers",
     quote: jpMorganQuote,
     placeholder: true,
   },
@@ -117,7 +126,7 @@ export const sectors: Sector[] = [
       solution: servicesFor("warehousing-management"),
     },
     serviceSlugs: servicesFor("warehousing-management"),
-    imageKey: "yard",
+    imageKey: "sectorWarehouse",
     quote: jpMorganQuote,
     placeholder: true,
   },
@@ -137,7 +146,7 @@ export const sectors: Sector[] = [
       solution: servicesFor("intermodal-management"),
     },
     serviceSlugs: servicesFor("intermodal-management"),
-    imageKey: "port",
+    imageKey: "sectorIntermodal",
     quote: jpMorganQuote,
     placeholder: true,
   },
@@ -164,7 +173,7 @@ export const sectors: Sector[] = [
       solution: servicesFor("3pl-providers"),
     },
     serviceSlugs: servicesFor("3pl-providers"),
-    imageKey: "yard",
+    imageKey: "sectorThreepl",
     quote: jpMorganQuote,
     rewrittenNote:
       "Pain points / Background rewritten from the legacy freight-broker copy — needs client sign-off before this ships beyond the demo.",
@@ -186,7 +195,7 @@ export const sectors: Sector[] = [
       solution: servicesFor("shippers-logistics"),
     },
     serviceSlugs: servicesFor("shippers-logistics"),
-    imageKey: "port",
+    imageKey: "sectorShippers",
     quote: jpMorganQuote,
     placeholder: true,
   },
