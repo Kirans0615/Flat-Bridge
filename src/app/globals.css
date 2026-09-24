@@ -151,3 +151,10 @@ body {
     animation: none;
   }
 }
+
+/* Pages with a background video: drop the full-screen flickering grain overlay. A fixed
+   mix-blend-mode layer forces per-frame re-blending of the video (stutter) and its 8-step
+   position jumps read as shake over moving footage. */
+body:has([data-video-bg]) [data-grain] {
+  display: none;
+}

@@ -47,6 +47,7 @@ export function Grain() {
   return (
     <div
       aria-hidden="true"
+      data-grain
       className="pointer-events-none fixed inset-0 z-40"
       style={{
         opacity: 0.035,

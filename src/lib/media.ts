@@ -19,6 +19,12 @@ export const media = {
     /** Plan B fallback only — never the primary source (brief §3.4). */
     original: `${GH}/bridge_8s_4k.mp4`,
   },
+  /** Case-studies page hero background (Kiran, 2026-09-23; Pexels 7583773, 1080p, ~20s loop). */
+  caseStudiesVideo: `${LOCAL}/case-studies-hero.mp4`,
+  /** Insights page hero background (Kiran, 2026-09-23; 1080p loop). */
+  insightsVideo: `${LOCAL}/insights-hero.mp4`,
+  /** Careers page hero background (Kiran, 2026-09-23; 1080p loop). */
+  careersVideo: `${LOCAL}/careers-hero.mp4`,
   logoDark: `${LOCAL}/logo-green.png`,
   logoLight: `${LOCAL}/logo-black-green.png`,
   team: {

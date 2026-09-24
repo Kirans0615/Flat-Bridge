@@ -4,7 +4,9 @@ import { baseMetadata } from "@/lib/seo";
 import { Section, Eyebrow } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/motion";
+import { SectionVideoBg } from "@/components/sections/section-video-bg";
 import { caseStudies } from "@/content/case-studies";
+import { media } from "@/lib/media";
 
 export function generateMetadata(): Metadata {
   return baseMetadata({
@@ -17,16 +19,21 @@ export function generateMetadata(): Metadata {
 export default function CaseStudiesPage() {
   return (
     <main id="main">
-      <Section tone="paper" id="case-studies-hero">
-        <h1 className="max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold">Case studies</h1>
-        <p className="mt-4 max-w-[56ch] text-body-lg text-current/70">
-          Anonymised structures built only from claims Flat Bridge already makes elsewhere on this site.
-        </p>
-        <div
-          role="note"
-          className="mt-8 max-w-[56ch] rounded-[var(--radius-md)] border border-[var(--color-hairline)] px-5 py-4 text-body"
-        >
-          Sample structure — real case studies to be supplied by Flat Bridge.
+      {/* Paper strip so the nav stays legible over the video (Kiran, 2026-09-23). */}
+      <div aria-hidden="true" data-tone="paper" className="h-20 bg-[var(--color-paper)]" />
+      <Section tone="ink" id="case-studies-hero" className="overflow-hidden">
+        <SectionVideoBg src={media.caseStudiesVideo} overlayOpacity={0.7} />
+        <div className="relative z-10">
+          <h1 className="max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold">Case studies</h1>
+          <p className="mt-4 max-w-[56ch] text-body-lg text-current/70">
+            Anonymised structures built only from claims Flat Bridge already makes elsewhere on this site.
+          </p>
+          <div
+            role="note"
+            className="mt-8 max-w-[56ch] rounded-[var(--radius-md)] border border-[var(--color-hairline)] px-5 py-4 text-body"
+          >
+            Sample structure — real case studies to be supplied by Flat Bridge.
+          </div>
         </div>
       </Section>
 

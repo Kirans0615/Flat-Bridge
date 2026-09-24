@@ -4,6 +4,7 @@ import Image from "next/image";
 import { baseMetadata } from "@/lib/seo";
 import { media } from "@/lib/media";
 import { Section, Eyebrow } from "@/components/ui/section";
+import { SectionVideoBg } from "@/components/sections/section-video-bg";
 import { Reveal, ClipReveal } from "@/components/motion";
 import { ApplicationForm } from "@/components/sections/application-form";
 import { roles, careersLede } from "@/content/careers";
@@ -40,8 +41,11 @@ export default function CareersPage() {
       {/* Hero — text-only. The real team photo is reserved for the About
           page's "Our team" section only (Kiran, 2026-09-10); this page's own
           photo (the stock culture image below) is never captioned as staff. */}
-      <Section tone="ink" id="careers-hero">
-        <div className="max-w-[44rem]">
+      {/* Solid ink strip so the nav stays legible above the video (Kiran, 2026-09-23). */}
+      <div aria-hidden="true" data-tone="ink" className="h-20 bg-[var(--color-ink)]" />
+      <Section tone="ink" id="careers-hero" className="overflow-hidden">
+        <SectionVideoBg src={media.careersVideo} overlayOpacity={0.7} />
+        <div className="relative z-10 max-w-[44rem]">
           <h1 className="text-h1 font-[var(--font-display)] font-semibold text-white">
             Build a career in logistics, from Mandeville.
           </h1>

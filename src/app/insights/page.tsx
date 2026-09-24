@@ -5,6 +5,7 @@ import Link from "next/link";
 import { baseMetadata } from "@/lib/seo";
 import { media } from "@/lib/media";
 import { Section, Eyebrow } from "@/components/ui/section";
+import { SectionVideoBg } from "@/components/sections/section-video-bg";
 import { Reveal, ClipReveal } from "@/components/motion";
 import { posts, formatPostDate } from "@/content/insights";
 import { slugifyCategory } from "./slugify-category";
@@ -20,11 +21,16 @@ export function generateMetadata(): Metadata {
 export default function InsightsPage() {
   return (
     <main id="main">
-      <Section tone="paper" id="insights-hero">
-        <h1 className="max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold">Insights</h1>
-        <p className="mt-4 max-w-[56ch] text-body-lg text-current/70">
-          Notes from the operations side of logistics BPO.
-        </p>
+      {/* Paper strip so the nav stays legible over the video (Kiran, 2026-09-23). */}
+      <div aria-hidden="true" data-tone="paper" className="h-20 bg-[var(--color-paper)]" />
+      <Section tone="ink" id="insights-hero" className="overflow-hidden">
+        <SectionVideoBg src={media.insightsVideo} overlayOpacity={0.7} />
+        <div className="relative z-10">
+          <h1 className="max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold">Insights</h1>
+          <p className="mt-4 max-w-[56ch] text-body-lg text-current/70">
+            Notes from the operations side of logistics BPO.
+          </p>
+        </div>
       </Section>
 
       {posts.length > 0 ? (
