@@ -22,7 +22,11 @@ export default function FeaturedCapabilities() {
   const spans = ["md:col-span-7", "md:col-span-5", "md:col-span-5", "md:col-span-7"];
 
   return (
-    <Section tone="paper" id="capabilities">
+    <Section
+      tone="paper"
+      id="capabilities"
+      className="bg-[linear-gradient(180deg,#f2f3f1_0%,#c5dbb5_100%)]"
+    >
       <Eyebrow>Featured capabilities</Eyebrow>
       <h2 className="mt-4 max-w-[36ch] text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
         Four things clients ask for first

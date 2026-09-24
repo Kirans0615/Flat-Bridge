@@ -71,6 +71,11 @@ export function SplitText({
           mask.style.display = mode === "line" ? "block" : "inline-block";
           mask.style.overflow = "hidden";
           mask.style.verticalAlign = "top";
+          // Tight line-heights put descenders (g, y, p) below the line box, so the mask
+          // clips them. Pad the mask down and pull it back with a negative margin so the
+          // layout is unchanged.
+          mask.style.paddingBottom = "0.18em";
+          mask.style.marginBottom = "-0.18em";
           parent.insertBefore(mask, unit);
           mask.appendChild(unit);
         }

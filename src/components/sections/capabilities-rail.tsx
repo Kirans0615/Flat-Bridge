@@ -33,7 +33,11 @@ export default function CapabilitiesRail() {
   const total = services.length;
 
   return (
-    <Section tone="paper" id="capabilities-rail" className="px-0">
+    <Section
+      tone="paper"
+      id="capabilities-rail"
+      className="px-0 bg-[linear-gradient(180deg,#c5dbb5_0%,#f2f3f1_100%)]"
+    >
       <div className="grid grid-cols-1 gap-10 px-[clamp(1.25rem,5vw,6rem)] md:grid-cols-12 md:gap-8">
         <div className="md:col-span-3">
           <div className="md:sticky md:top-24">
@@ -60,7 +64,6 @@ export default function CapabilitiesRail() {
           <PinnedRail
             count={total}
             widthVw={38}
-            trackClassName="md:h-[64vh]"
             fallback={() => <StaticGrid />}
           >
             {(activeIndex) => {
@@ -140,9 +143,9 @@ function RailPanel({ service, active }: { service: Service; active: boolean }) {
 
 function StaticGrid() {
   return (
-    <div className="grid grid-cols-1 gap-px bg-[var(--color-hairline)] sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-1 border-l border-t border-[var(--color-hairline)] sm:grid-cols-2 lg:grid-cols-4">
       {services.map((service) => (
-        <div key={service.slug} className="flex flex-col justify-between bg-[var(--color-paper)] p-6">
+        <div key={service.slug} className="flex flex-col justify-between border-b border-r border-[var(--color-hairline)] p-6">
           <div>
             <h3 className="text-h3 font-[var(--font-display)]">{service.name}</h3>
             <p className="mt-3 text-small text-current/70">{service.lede}</p>

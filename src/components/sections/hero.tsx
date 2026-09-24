@@ -210,7 +210,7 @@ export default function Hero() {
               className="mt-6 font-[var(--font-display)] font-semibold leading-[0.98] tracking-[-0.03em] text-white"
               style={{ fontSize: "clamp(3rem, 6vw, 6rem)" }}
             >
-              <span className="block overflow-hidden">
+              <span className="block overflow-hidden pb-[0.18em] -mb-[0.18em]">
                 {reducedMotion ? (
                   heroContent.h1Line1
                 ) : (
@@ -219,7 +219,7 @@ export default function Hero() {
                   </SplitText>
                 )}
               </span>
-              <span className="block overflow-hidden">
+              <span className="block overflow-hidden pb-[0.18em] -mb-[0.18em]">
                 {reducedMotion ? (
                   heroContent.h1Line2
                 ) : (
