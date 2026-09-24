@@ -11,7 +11,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 
 import { navCta, primaryNav, servicePillars } from "@/content/nav";
 import { services } from "@/content/services";
@@ -50,6 +50,10 @@ const HIDE_THRESHOLD_PX = 400;
  * Cloudflare/OpenNext build, where every route exists.
  */
 const MOCKUP_HOME_ONLY = process.env.NEXT_PUBLIC_MOCKUP_HOME_ONLY === "true";
+// One shared box for every desktop nav item (links, dropdown triggers, disabled
+// spans) so they all sit on the same line regardless of element type.
+const NAV_ITEM =
+  "micro inline-flex h-9 items-center gap-1 font-medium uppercase leading-none tracking-wide";
 const DISABLED_NAV_CLASSES =
   "pointer-events-none select-none opacity-45 blur-[2.5px]";
 
@@ -79,6 +83,19 @@ const PILLAR_CAPABILITY_SAMPLES: Record<string, string[]> = {
 
 type MegaMenu = "services" | "sectors" | null;
 type Tone = "ink" | "paper";
+
+function NavChevron({ open }: { open: boolean }) {
+  return (
+    <ChevronDown
+      aria-hidden="true"
+      strokeWidth={2.25}
+      className={cn(
+        "size-3.5 shrink-0 opacity-80 transition-transform duration-200 ease-out",
+        open && "rotate-180 opacity-100",
+      )}
+    />
+  );
+}
 
 function trapTabKey(event: ReactKeyboardEvent, container: HTMLElement | null) {
   if (event.key !== "Tab" || !container) return;
@@ -255,12 +272,13 @@ export function Nav() {
                       key={item.href}
                       aria-disabled="true"
                       className={cn(
-                        "micro font-medium uppercase tracking-wide",
+                        NAV_ITEM,
                         linkColor,
                         DISABLED_NAV_CLASSES,
                       )}
                     >
                       {item.label}
+                      <NavChevron open={false} />
                     </span>
                   );
                 }
@@ -268,7 +286,7 @@ export function Nav() {
                 return (
                   <div
                     key={item.href}
-                    className="relative"
+                    className="relative flex h-9 items-center"
                     onMouseEnter={() => openWithIntent(menu)}
                     onMouseLeave={closeWithIntent}
                   >
@@ -280,11 +298,12 @@ export function Nav() {
                       aria-haspopup="true"
                       onClick={() => setOpenMenu((prev) => (prev === menu ? null : menu))}
                       className={cn(
-                        "micro font-medium uppercase tracking-wide transition-colors hover:text-[var(--color-green-lift)]",
+                        NAV_ITEM, "transition-colors hover:text-[var(--color-green-lift)]",
                         linkColor,
                       )}
                     >
                       {item.label}
+                      <NavChevron open={openMenu === menu} />
                     </button>
 
                     <AnimatePresence>
@@ -314,7 +333,7 @@ export function Nav() {
                     key={item.href}
                     aria-disabled="true"
                     className={cn(
-                      "micro font-medium uppercase tracking-wide",
+                      NAV_ITEM,
                       linkColor,
                       DISABLED_NAV_CLASSES,
                     )}
@@ -330,7 +349,7 @@ export function Nav() {
                   href={item.href}
                   data-cursor="link"
                   className={cn(
-                    "micro font-medium uppercase tracking-wide transition-colors hover:text-[var(--color-green-lift)]",
+                    NAV_ITEM, "transition-colors hover:text-[var(--color-green-lift)]",
                     linkColor,
                   )}
                 >
