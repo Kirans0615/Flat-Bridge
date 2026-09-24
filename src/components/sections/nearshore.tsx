@@ -1,9 +1,7 @@
-import Image from "next/image";
-
 import { Section, Eyebrow } from "@/components/ui/section";
-import { ClipReveal, Parallax, CableDraw } from "@/components/motion";
+import { ClipReveal, CableDraw } from "@/components/motion";
+import NearshoreMap from "@/components/sections/nearshore-map";
 import { nearshore } from "@/content/homepage";
-import { media } from "@/lib/media";
 
 /** Stylized, approximate coordinates in a 400x220 viewBox — not a literal map. */
 const ROUTE_TARGETS: Record<string, { x: number; y: number }> = {
@@ -28,16 +26,17 @@ export default function Nearshore() {
     <Section tone="paper" id="nearshore">
       <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
-          <ClipReveal direction="up" className="relative aspect-[3/4] w-full overflow-hidden">
-            <Parallax speed={-0.1} className="absolute inset-0">
-              <Image
-                src={media.jamaica["1600"]}
-                alt="Caribbean pier near Mandeville, Jamaica"
-                fill
-                sizes="(min-width: 768px) 40vw, 100vw"
-                className="object-cover"
-              />
-            </Parallax>
+          <ClipReveal
+            direction="up"
+            className="relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-[var(--color-ink)]"
+          >
+            <div
+              role="img"
+              aria-label="Map of routes from Mandeville, Jamaica to Miami, Dallas, Atlanta, Chicago and Toronto"
+              className="absolute inset-0"
+            >
+              <NearshoreMap routes={nearshore.routes} />
+            </div>
           </ClipReveal>
         </div>
 

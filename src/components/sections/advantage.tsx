@@ -11,13 +11,13 @@ import { cn } from "@/lib/utils";
  *
  * Background: sunlit aerial container-yard photo (Kiran, 2026-09-23), replacing
  * the earlier ship-bow thumbnail. High-res source, so no blur/duotone; a
- * flat 0.82 ink overlay (no bottom gradient) keeps the photo clearly visible while the text
+ * flat 0.92 ink overlay (no bottom gradient) keeps the photo clearly visible while the text
  * stays legible.
  */
 export default function Advantage() {
   return (
     <Section tone="ink" id="advantage" className="overflow-hidden">
-      <SectionPhotoBg src={media.advantageYard} overlayOpacity={0.82} gradient={false} />
+      <SectionPhotoBg src={media.advantageYard} overlayOpacity={0.92} gradient={false} />
 
       <div className="relative z-10 grid grid-cols-1 gap-12 md:grid-cols-12">
         <div className="md:col-span-7 md:col-start-1">

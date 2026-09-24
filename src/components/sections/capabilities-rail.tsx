@@ -36,7 +36,7 @@ export default function CapabilitiesRail() {
     <Section
       tone="paper"
       id="capabilities-rail"
-      className="px-0 bg-[linear-gradient(180deg,#c5dbb5_0%,#f2f3f1_100%)]"
+      className="px-0 pt-[clamp(3rem,6vw,5.5rem)] bg-[linear-gradient(180deg,#c5dbb5_0%,#f2f3f1_100%)]"
     >
       <div className="grid grid-cols-1 gap-10 px-[clamp(1.25rem,5vw,6rem)] md:grid-cols-12 md:gap-8">
         <div className="md:col-span-3">

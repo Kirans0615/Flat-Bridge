@@ -1,10 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 
-import { ClipReveal } from "@/components/motion";
 import { Section, Eyebrow } from "@/components/ui/section";
 import { posts } from "@/content/insights";
-import { media } from "@/lib/media";
 
 /**
  * brief §8.14 — one real post as a full-width feature (rendering its honest
@@ -27,7 +24,7 @@ export default function InsightsTeaser() {
           <Link
             href={`/insights/${post.slug}`}
             data-cursor="link"
-            className="group grid grid-cols-1 gap-8 border-t border-[var(--color-hairline)] pt-10 sm:grid-cols-2 lg:col-span-8"
+            className="group block border-t border-[var(--color-hairline)] pt-10 lg:col-span-8"
           >
             <div className="flex flex-col justify-between">
               <div>
@@ -42,9 +39,6 @@ export default function InsightsTeaser() {
               </div>
               <span className="mt-6 block h-px w-16 bg-[var(--color-green)]" aria-hidden="true" />
             </div>
-            <ClipReveal direction="up" className="relative aspect-video w-full overflow-hidden sm:aspect-auto">
-              <Image src={media.yard["1600"]} alt="" fill sizes="(min-width: 640px) 40vw, 100vw" className="object-cover" />
-            </ClipReveal>
           </Link>
         ) : null}
 

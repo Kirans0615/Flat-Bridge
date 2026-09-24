@@ -101,3 +101,53 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* -- Nearshore route map (bundled SVG, no tiles) ---------------------------- */
+.route-arc {
+  stroke-dasharray: 7 9;
+  animation: route-flow 1.4s linear infinite;
+}
+@keyframes route-flow {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+.route-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: route-pulse 2.4s ease-out infinite;
+}
+@keyframes route-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+.route-map-label {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  fill: var(--color-concrete);
+  paint-order: stroke;
+  stroke: #07141e;
+  stroke-width: 4px;
+}
+.route-map-label-origin {
+  fill: #fff;
+  font-weight: 600;
+}
+.route-map-route {
+  transition: opacity 0.2s;
+}
+.route-map:has(.route-map-route:hover) .route-map-route:not(:hover) {
+  opacity: 0.35;
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-arc,
+  .route-pulse {
+    animation: none;
+  }
+}

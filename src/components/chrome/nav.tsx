@@ -156,24 +156,28 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Tone detection — watches whatever the current route has tagged
-  // data-tone="ink|paper", re-queried whenever the route changes.
+  // Tone detection — which data-tone="ink|paper" section sits under the nav bar. Sampled
+  // synchronously with elementsFromPoint (on mount, route change, scroll, resize) rather than
+  // via IntersectionObserver, so the very first paint after navigation already has the right
+  // nav colours instead of waiting on an async callback.
   useEffect(() => {
-    const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-tone]"));
-    if (elements.length === 0) return;
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.find((entry) => entry.isIntersecting);
-        if (visible) {
-          const next = visible.target.getAttribute("data-tone");
-          if (next === "ink" || next === "paper") setTone(next);
-        }
-      },
-      { rootMargin: "-50% 0px -50% 0px", threshold: 0 },
-    );
-    elements.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    function detectTone() {
+      const y = Math.min(48, window.innerHeight - 1);
+      const hit = document
+        .elementsFromPoint(window.innerWidth / 2, y)
+        .find((el) => !el.closest("header") && el.closest("[data-tone]"));
+      const next = hit?.closest("[data-tone]")?.getAttribute("data-tone");
+      if (next === "ink" || next === "paper") setTone(next);
+    }
+    detectTone();
+    const settle = window.setTimeout(detectTone, 400); // after reveal/preloader layout shifts
+    window.addEventListener("scroll", detectTone, { passive: true });
+    window.addEventListener("resize", detectTone);
+    return () => {
+      window.clearTimeout(settle);
+      window.removeEventListener("scroll", detectTone);
+      window.removeEventListener("resize", detectTone);
+    };
   }, [pathname]);
 
   // Escape closes whatever's open, returning focus sensibly.
@@ -221,13 +225,13 @@ export function Nav() {
     closeTimerRef.current = window.setTimeout(() => setOpenMenu(null), 240);
   }, []);
 
-  const isPaperFloating = isFloating && tone === "paper";
-  const logo = isFloating ? (isPaperFloating ? media.logoLight : media.logoDark) : media.logoDark;
-  const linkColor = isFloating
-    ? isPaperFloating
-      ? "text-[var(--color-ink)]"
-      : "text-[var(--color-concrete)]"
-    : "text-[var(--color-concrete)]";
+  // Tone comes from whichever data-tone section sits under the nav (top ~6% of the
+  // viewport), in both the transparent and floating states — otherwise light-topped pages
+  // (services, contact, ...) render concrete-on-paper and the nav vanishes.
+  const isPaper = tone === "paper";
+  const isPaperFloating = isFloating && isPaper;
+  const logo = isPaper ? media.logoLight : media.logoDark;
+  const linkColor = isPaper ? "text-[var(--color-ink)]" : "text-[var(--color-concrete)]";
 
   return (
     <>
@@ -365,7 +369,7 @@ export function Nav() {
                 aria-disabled="true"
                 className={cn(
                   "hidden micro rounded-full border border-[var(--color-green-lift)] px-5 py-2.5 font-medium sm:inline-block",
-                  isFloating ? "text-inherit" : "text-[var(--color-concrete)]",
+                  linkColor,
                   DISABLED_NAV_CLASSES,
                 )}
               >
@@ -375,12 +379,7 @@ export function Nav() {
               <Link
                 href={navCta.href}
                 data-cursor="link"
-                className={cn(
-                  "hidden micro rounded-full border px-5 py-2.5 font-medium transition-colors sm:inline-block",
-                  isFloating
-                    ? "border-[var(--color-green-lift)] text-inherit hover:bg-[var(--color-green-lift)] hover:text-[var(--color-ink)]"
-                    : "border-[var(--color-green-lift)] text-[var(--color-concrete)] hover:bg-[var(--color-green-lift)] hover:text-[var(--color-ink)]",
-                )}
+                className="hidden micro rounded-full border border-[var(--color-green-lift)] bg-[var(--color-green-lift)] px-5 py-2.5 font-medium text-[var(--color-ink)] shadow-sm transition-colors hover:border-[var(--color-white)] hover:bg-[var(--color-white)] sm:inline-block"
               >
                 {navCta.label}
               </Link>
