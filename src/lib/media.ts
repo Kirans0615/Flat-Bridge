@@ -27,6 +27,7 @@ export const media = {
   careersVideo: `${LOCAL}/careers-hero.mp4`,
   logoDark: `${LOCAL}/logo-green.png`,
   logoLight: `${LOCAL}/logo-black-green.png`,
+  teamPhoto: `${LOCAL}/team-flatbridge-2026.png`,
   team: {
     "480": `${LOCAL}/team-flatbridge-480.webp`,
     "900": `${LOCAL}/team-flatbridge-900.webp`,

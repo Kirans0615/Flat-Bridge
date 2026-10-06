@@ -170,25 +170,32 @@ export default function AboutPage() {
 
       {/* Our team */}
       <Section tone="ink" id="our-team" className="!px-0">
-        <div className="px-[clamp(1.25rem,5vw,6rem)]">
-          <Eyebrow>Our team</Eyebrow>
-          <h2 className="mt-3 text-h2 font-[var(--font-display)] font-semibold">{ourTeam.h2}</h2>
-          <Reveal>
-            <p className="mt-4 max-w-[68ch] text-body-lg text-[var(--color-concrete)]">{ourTeam.body}</p>
-          </Reveal>
+        <div className="grid grid-cols-1 items-center gap-10 px-[clamp(1.25rem,5vw,6rem)] lg:grid-cols-2 lg:gap-16">
+          <div>
+            <Eyebrow>Our team</Eyebrow>
+            <h2 className="mt-3 text-h2 font-[var(--font-display)] font-semibold">{ourTeam.h2}</h2>
+            <Reveal>
+              <div className="mt-6 flex max-w-[60ch] flex-col gap-5 text-body-lg text-[var(--color-concrete)]">
+                <p>{ourTeam.body}</p>
+                {whoWeAre.body.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+          <figure className="m-0">
+            <ClipReveal direction="up" className="relative aspect-square w-full overflow-hidden">
+              <Image
+                src={media.teamPhoto}
+                alt={ourTeam.caption}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+            </ClipReveal>
+            <figcaption className="mt-3 font-mono text-small text-current/70">{ourTeam.caption}</figcaption>
+          </figure>
         </div>
-        <ClipReveal direction="up" className="relative mt-10 aspect-[21/9] w-full overflow-hidden">
-          <Image
-            src={media.team["2400"]}
-            alt={ourTeam.caption}
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </ClipReveal>
-        <p className="mt-3 px-[clamp(1.25rem,5vw,6rem)] font-mono text-small text-current/70">
-          {ourTeam.caption}
-        </p>
       </Section>
     </main>
   );

@@ -57,9 +57,12 @@ export default async function SectorDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Hero */}
-      <Section tone="ink" id="sector-hero" className="!py-0">
-        <div className="relative flex min-h-[55vh] flex-col justify-end overflow-hidden px-[clamp(1.25rem,5vw,6rem)] py-[clamp(4rem,8vw,7rem)]">
+      {/* White bar above the hero so the floating navbar reads dark on light (same as Case Studies) */}
+      <div aria-hidden="true" data-tone="paper" className="h-20 bg-[var(--color-paper)]" />
+
+      {/* Hero: photo covers the whole section, edge to edge */}
+      <Section tone="ink" id="sector-hero" className="overflow-hidden !py-0">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[var(--color-ink)]">
           <Image
             src={media[sector.imageKey]["2400"]}
             alt=""
@@ -70,14 +73,15 @@ export default async function SectorDetailPage({
             sizes="100vw"
           />
           <div
-            aria-hidden="true"
             className="absolute inset-0"
             style={{
               background:
                 "linear-gradient(to top, var(--color-abyss) 10%, rgba(5,18,26,0.6) 55%, rgba(5,18,26,0.25) 100%)",
             }}
           />
-          <div className="relative z-10">
+        </div>
+        <div className="relative z-10 flex min-h-[55vh] flex-col justify-end py-[clamp(4rem,8vw,7rem)]">
+          <div className="relative">
             <nav aria-label="Breadcrumb" className="micro text-current/70">
               <Link href="/sectors" className="hover:text-[var(--color-green-lift)]">
                 Sectors
