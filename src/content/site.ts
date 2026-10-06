@@ -35,7 +35,7 @@ export const site = {
 
 export const heroContent = {
   kicker: "Flat Bridge Ltd · Mandeville, Jamaica",
-  h1Line1: "Bridging the gap",
+  h1Line1: "Built to carry the load",
   h1Line2: "since 1997",
   sub: "Supply chain and logistics BPO. We take the load boards, the check calls, the appointments and the claims — so your team can run the business.",
   /** Legacy subhead, kept for client comparison per brief §8.1 — not shipped as primary copy. */

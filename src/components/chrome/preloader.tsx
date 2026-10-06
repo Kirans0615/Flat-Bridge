@@ -118,7 +118,7 @@ export function Preloader() {
             animate={{ clipPath: textVisible ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)" }}
             transition={{ duration: TEXT_MS / 1000, ease: E.out }}
           >
-            Bridging the gap
+            Built to carry the load
           </motion.p>
         </div>
       </div>
