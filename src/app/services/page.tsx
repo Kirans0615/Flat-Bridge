@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 
+import Image from "next/image";
+
 import { baseMetadata } from "@/lib/seo";
+import { media } from "@/lib/media";
 import { Section, Eyebrow } from "@/components/ui/section";
 import { Marquee } from "@/components/motion";
 import { services } from "@/content/services";
@@ -19,13 +22,36 @@ export function generateMetadata(): Metadata {
 export default function ServicesPage() {
   return (
     <main id="main">
-      <Section tone="paper" id="services-hero">
-        <h1 className="max-w-[20ch] text-h1 font-[var(--font-display)] font-semibold">
-          Sixteen capabilities, three ways to buy them.
-        </h1>
-        <p className="mt-4 max-w-[56ch] text-body-lg text-current/70">
-          Take a single function off your desk, or hand us the whole back office.
-        </p>
+      {/* White bar above the photo so the floating navbar reads dark on light */}
+      <div aria-hidden="true" data-tone="paper" className="h-20 bg-[var(--color-paper)]" />
+
+      <Section tone="ink" id="services-hero" className="overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[var(--color-ink)]">
+          <Image
+            src={media.heroServices["contact-centre"]}
+            alt=""
+            aria-hidden="true"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(5,18,26,0.92) 0%, rgba(5,18,26,0.72) 55%, rgba(5,18,26,0.5) 100%)",
+            }}
+          />
+        </div>
+        <div className="relative z-10 max-w-[56rem]">
+          <h1 className="max-w-[20ch] text-h1 font-[var(--font-display)] font-semibold text-white">
+            Sixteen capabilities, three ways to buy them.
+          </h1>
+          <p className="mt-4 max-w-[56ch] text-body-lg text-[var(--color-concrete)]">
+            Take a single function off your desk, or hand us the whole back office.
+          </p>
+        </div>
       </Section>
 
       {/* Three pillars — sequential numbering earned here per brief §4.3 */}

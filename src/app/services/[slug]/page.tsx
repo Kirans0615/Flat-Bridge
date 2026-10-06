@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -6,6 +7,7 @@ import { baseMetadata, serviceJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { Section, Eyebrow } from "@/components/ui/section";
 import { Reveal, SplitText, Magnetic } from "@/components/motion";
 import { QuoteForm } from "@/components/sections/quote-form";
+import { media } from "@/lib/media";
 import { services } from "@/content/services";
 import { sectors } from "@/content/sectors";
 
@@ -46,6 +48,28 @@ export default async function ServiceDetailPage({
     ]),
   ];
 
+  const heroImage = media.heroServices[service.slug];
+  const heroHeader = (
+    <>
+      <nav aria-label="Breadcrumb" className="micro text-current/70">
+        <Link href="/services" className="hover:text-[var(--color-green)]">
+          Services
+        </Link>
+        <span aria-hidden="true"> / </span>
+        <span>{service.name}</span>
+      </nav>
+
+      <SplitText
+        as="h1"
+        mode="line"
+        className={`mt-4 max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold${heroImage ? " text-white" : ""}`}
+      >
+        {service.name}
+      </SplitText>
+      <p className="mt-4 max-w-[56ch] text-body-lg text-current/70">{service.lede}</p>
+    </>
+  );
+
   return (
     <main id="main">
       <script
@@ -53,23 +77,30 @@ export default async function ServiceDetailPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Section tone="paper" id="service-hero">
-        <nav aria-label="Breadcrumb" className="micro text-current/70">
-          <Link href="/services" className="hover:text-[var(--color-green)]">
-            Services
-          </Link>
-          <span aria-hidden="true"> / </span>
-          <span>{service.name}</span>
-        </nav>
+      {heroImage ? (
+        <>
+          {/* White bar above the photo so the floating navbar reads dark on light */}
+          <div aria-hidden="true" data-tone="paper" className="h-20 bg-[var(--color-paper)]" />
+          <Section tone="ink" id="service-photo-hero" className="overflow-hidden">
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[var(--color-ink)]">
+              <Image src={heroImage} alt="" aria-hidden="true" fill priority className="object-cover" sizes="100vw" />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to right, rgba(5,18,26,0.92) 0%, rgba(5,18,26,0.72) 55%, rgba(5,18,26,0.5) 100%)",
+                }}
+              />
+            </div>
+            <div className="relative z-10 max-w-[56rem]">
+              {heroHeader}
+            </div>
+          </Section>
+        </>
+      ) : null}
 
-        <SplitText
-          as="h1"
-          mode="line"
-          className="mt-4 max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold"
-        >
-          {service.name}
-        </SplitText>
-        <p className="mt-4 max-w-[56ch] text-body-lg text-current/70">{service.lede}</p>
+      <Section tone="paper" id="service-hero" className={heroImage ? "!pt-[clamp(3rem,6vw,5rem)]" : undefined}>
+        {heroImage ? null : heroHeader}
 
         <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-12">
           <div className="border-l border-[var(--color-hairline)] pl-6 lg:col-span-7">

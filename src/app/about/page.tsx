@@ -37,8 +37,29 @@ export default function AboutPage() {
       {/* Hero — text-only. The real team photo appears exactly once on this
           page, in the "Our team" section at the bottom, per Kiran's
           instruction (2026-09-10): never repeat it elsewhere. */}
-      <Section tone="ink" id="about-hero">
-        <div className="max-w-[48rem]">
+      {/* White bar above the hero so the floating navbar reads dark on light (same as the sector pages) */}
+      <div aria-hidden="true" data-tone="paper" className="h-20 bg-[var(--color-paper)]" />
+
+      <Section tone="ink" id="about-hero" className="overflow-hidden">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[var(--color-ink)]">
+          <Image
+            src={media.aboutHeroBg}
+            alt=""
+            aria-hidden="true"
+            fill
+            priority
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, rgba(5,18,26,0.92) 0%, rgba(5,18,26,0.72) 55%, rgba(5,18,26,0.5) 100%)",
+            }}
+          />
+        </div>
+        <div className="relative z-10 max-w-[48rem]">
           <SplitText
             as="h1"
             mode="line"
