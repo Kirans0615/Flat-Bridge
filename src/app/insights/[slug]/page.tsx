@@ -7,6 +7,7 @@ import { Section } from "@/components/ui/section";
 import { Reveal } from "@/components/motion";
 import { posts, formatPostDate } from "@/content/insights";
 import { slugifyCategory } from "../slugify-category";
+import { INSIGHTS_ENABLED } from "@/lib/feature-flags";
 
 export function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
@@ -23,11 +24,13 @@ export async function generateMetadata({
   return baseMetadata({ title: post.title, description: post.excerpt, path: `/insights/${post.slug}` });
 }
 
+/** 10.09.26 revision round, Part 6.1 — Insights hidden: unrouted (404). */
 export default async function InsightPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  if (!INSIGHTS_ENABLED) notFound();
   const { slug } = await params;
   const post = posts.find((p) => p.slug === slug);
   if (!post) notFound();

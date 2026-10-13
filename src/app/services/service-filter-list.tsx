@@ -2,23 +2,33 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import type { Service } from "@/content/services";
+import { serviceCategories } from "@/content/services";
 
-const CATEGORIES: Service["category"][] = [
-  "Dispatch & drivers",
-  "Documents & data",
-  "Carriers & rates",
-  "Systems & integration",
-];
+const CATEGORIES: Service["category"][] = serviceCategories.map((c) => c.label);
+
+function categoryFromParam(param: string | null): "All" | Service["category"] {
+  if (!param || param === "all") return "All";
+  const match = serviceCategories.find((c) => c.id === param);
+  return match ? match.label : "All";
+}
 
 /**
- * brief §10.1 — filterable index of all 16 capabilities. Simplified from the
+ * brief §10.1 — filterable index of all 24 capabilities. Simplified from the
  * brief's framer-motion `layout` + `AnimatePresence` row-reflow spec to a
  * plain re-render on filter change (no layout animation) — noted as a
  * candidate for a later polish pass.
+ *
+ * 10.09.26 revision round, Part 3.4 — initial filter now reads `?category=`
+ * from the URL (set by the nav dropdown and footer links), so landing here
+ * from "Accounting" etc. opens pre-filtered.
  */
 export function ServiceFilterList({ services }: { services: Service[] }) {
-  const [active, setActive] = useState<"All" | Service["category"]>("All");
+  const searchParams = useSearchParams();
+  const [active, setActive] = useState<"All" | Service["category"]>(() =>
+    categoryFromParam(searchParams.get("category"))
+  );
 
   const filtered = useMemo(
     () => (active === "All" ? services : services.filter((s) => s.category === active)),
@@ -28,7 +38,7 @@ export function ServiceFilterList({ services }: { services: Service[] }) {
   return (
     <div>
       <div
-        className="sticky top-0 z-10 -mx-[clamp(1.25rem,5vw,6rem)] flex flex-wrap gap-2 bg-[var(--color-paper)]/95 px-[clamp(1.25rem,5vw,6rem)] py-4 backdrop-blur"
+        className="sticky top-0 z-10 -mx-[clamp(1.25rem,5vw,6rem)] flex flex-wrap gap-3 bg-[var(--color-paper)]/95 px-[clamp(1.25rem,5vw,6rem)] py-4 backdrop-blur"
         role="group"
         aria-label="Filter capabilities by category"
       >
@@ -38,7 +48,7 @@ export function ServiceFilterList({ services }: { services: Service[] }) {
             type="button"
             onClick={() => setActive(category)}
             aria-pressed={active === category}
-            className="rounded-full border px-4 py-1.5 text-small transition-colors"
+            className="rounded-full border px-6 py-2.5 text-body font-medium transition-colors"
             style={{
               borderColor: active === category ? "var(--color-green)" : "var(--color-hairline)",
               color: active === category ? "var(--color-green)" : "var(--color-ink)",

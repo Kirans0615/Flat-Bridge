@@ -15,7 +15,7 @@ const HOME_SECTIONS: CableRailSection[] = [
   { id: "differentiators", label: "What sets us apart" },
   { id: "advantage", label: "Competitive advantage" },
   { id: "capabilities", label: "Featured capabilities" },
-  { id: "capabilities-rail", label: "Sixteen capabilities" },
+  { id: "capabilities-rail", label: "Twenty-four capabilities" },
   { id: "edge", label: "Competitive edge" },
   { id: "sectors", label: "Sectors" },
   { id: "ops-console", label: "Ops console" },
@@ -23,7 +23,6 @@ const HOME_SECTIONS: CableRailSection[] = [
   { id: "nearshore", label: "Nearshore" },
   { id: "stats", label: "Stats" },
   { id: "testimonials", label: "Testimonials" },
-  { id: "insights", label: "Insights" },
   { id: "book-a-call", label: "Book a call" },
 ];
 

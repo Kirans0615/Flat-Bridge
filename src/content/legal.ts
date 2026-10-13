@@ -6,12 +6,14 @@
  * docs/client-questions.md #23.
  */
 export const legalPlaceholder = {
+  /** 10.09.26 revision round, Part 9.3 — replaces the old holding copy. */
   privacy: {
     title: "Privacy policy",
-    body: "A full privacy policy for Flat Bridge Limited is being finalized. In the meantime, contact us directly with any questions about how information is handled.",
+    body: "Our full privacy policy is being updated to ensure the strictest adherence to current mandates. Contact us directly with any questions regarding how information is securely handled.",
   },
+  /** 10.09.26 revision round, Part 9.4 — replaces the old holding copy. */
   terms: {
     title: "Terms of service",
-    body: "Terms of service for Flat Bridge Limited are being finalized. In the meantime, contact us directly with any questions.",
+    body: "Terms of service are uniquely and explicitly defined in your service contract. One size does not fit all.",
   },
 } as const;

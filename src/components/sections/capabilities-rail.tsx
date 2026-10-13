@@ -9,8 +9,8 @@ import { services, type Service } from "@/content/services";
 import { cn } from "@/lib/utils";
 
 /**
- * brief §8.6 — the set-piece. Renders all 16 `services` (already in the
- * brief's fixed slug order) inside `<PinnedRail>`.
+ * brief §8.6 — the set-piece. Renders all 24 `services` (10.09.26 revision
+ * round, Part 3.1 — was 16) inside `<PinnedRail>`.
  *
  * The sticky "N / 16" counter + progress bar live outside PinnedRail's own
  * translated track (so they stay fixed while the track scrolls). PinnedRail
@@ -42,7 +42,7 @@ export default function CapabilitiesRail() {
         <div className="md:col-span-3">
           <div className="md:sticky md:top-24">
             <h2 className="text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
-              Sixteen things we take off your desk
+              Twenty-four things we take off your desk
             </h2>
             <div className="mt-8 flex items-baseline gap-1 font-mono text-small">
               <span ref={counterRef} className="tabular-nums text-[var(--color-ink)]">

@@ -6,9 +6,12 @@
  * ships with a short, deliberately generic one-line elaboration of its own
  * heading rather than invented paragraph copy. See docs/client-questions.md.
  */
+/** 10.09.26 revision round, Part 4.1 — hero copy replaced; the hero photo
+ * block is now this page's "who we are" statement (Part 4.2's standalone
+ * section is removed). */
 export const aboutHero = {
-  h1: "It's not what we do, but how we do it.",
-  lede: "Flat Bridge Limited has been building the bridge between logistics operations and the people who run them since 1997.",
+  h1: "Flat Bridge is a trusted resource of English-speaking, logistics-minded professionals.",
+  lede: "Flat Bridge's skilled workforce is trained in industry trends, supply chain platforms, and best practices in tracking, tracing, appointments, and carrier sales. They bring their training into your systems.",
   cta: { label: "Talk to us", href: "/contact" },
 } as const;
 
@@ -17,30 +20,6 @@ export const whoWeAre = {
   body: [
     "Flat Bridge is built around the people doing the work — a trained, English-speaking team in Mandeville, Jamaica, operating inside the systems our clients already run.",
     "The goal is the same one behind every engagement: take the operational load off a client's team so they can focus on the relationships and decisions that grow the business.",
-  ],
-  placeholder: true,
-} as const;
-
-export const timeline = [
-  { year: "1997", label: "Founded" },
-  { year: "Today", label: "Mandeville, Jamaica" },
-] as const;
-
-export const howWeWork = {
-  h2: "How we work",
-  rows: [
-    {
-      title: "Responsibility",
-      body: "Ownership of the function we're handed, not just the tasks inside it.",
-    },
-    {
-      title: "Collaborative impact",
-      body: "Working inside a client's team and systems rather than alongside them.",
-    },
-    {
-      title: "Innovation excellence",
-      body: "Applying current systems and methods rather than legacy manual process.",
-    },
   ],
   placeholder: true,
 } as const;
@@ -57,8 +36,9 @@ export const whyChooseUs = {
       body: "Engagements shaped around a client's specific systems and needs.",
     },
     {
-      title: "Advanced technology",
-      body: "Work carried out inside established transportation and logistics platforms.",
+      /** 10.09.26 revision round, Part 4.5 — replaces "Advanced technology". */
+      title: "Evolving Technological Expertise",
+      body: "Work carried out inside clients' current platforms, while ready to adapt to platform or technology upgrades and innovations.",
     },
     {
       title: "Customer-centric focus",
@@ -67,12 +47,6 @@ export const whyChooseUs = {
   ],
   placeholder: true,
 } as const;
-
-export const aboutCounters = [
-  { value: 75000, suffix: "+", decimals: 0, label: "Loads processed" },
-  { value: 29, suffix: "", decimals: 0, label: "Years in logistics", computed: true },
-  { value: 94, suffix: "%", decimals: 0, label: "Client satisfaction" },
-] as const;
 
 export const ourTeam = {
   h2: "Our team",

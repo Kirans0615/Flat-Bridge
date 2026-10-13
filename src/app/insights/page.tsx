@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import { baseMetadata } from "@/lib/seo";
 import { media } from "@/lib/media";
@@ -9,6 +10,7 @@ import { SectionVideoBg } from "@/components/sections/section-video-bg";
 import { Reveal, ClipReveal } from "@/components/motion";
 import { posts, formatPostDate } from "@/content/insights";
 import { slugifyCategory } from "./slugify-category";
+import { INSIGHTS_ENABLED } from "@/lib/feature-flags";
 
 export function generateMetadata(): Metadata {
   return baseMetadata({
@@ -18,7 +20,10 @@ export function generateMetadata(): Metadata {
   });
 }
 
+/** 10.09.26 revision round, Part 6.1 — Insights hidden: unrouted (404),
+ * source kept intact behind this gate so it can come back later. */
 export default function InsightsPage() {
+  if (!INSIGHTS_ENABLED) notFound();
   return (
     <main id="main">
       {/* Paper strip so the nav stays legible over the video (Kiran, 2026-09-23). */}

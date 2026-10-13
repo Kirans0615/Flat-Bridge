@@ -46,6 +46,22 @@ const legacyRedirects = [
 
   // Elementor MetForm artifacts — all four resolve to the real contact page
   { source: "/metform-form/:slug*", destination: "/contact" },
+
+  // Services: 10.09.26 revision round, Part 3.1 — 16 -> 24 catalog. Removed
+  // slugs with no direct replacement go to /services; renamed/split slugs go
+  // to their closest new-catalog equivalent.
+  { source: "/services/data-entry", destination: "/services" },
+  { source: "/services/back-office-support", destination: "/services" },
+  {
+    source: "/services/air-waybill-and-bill-of-lading-processing",
+    destination: "/services/air-waybills",
+  },
+  { source: "/services/freight-audit-and-payment", destination: "/services/invoice-auditing" },
+  {
+    source: "/services/transportation-management-systems",
+    destination: "/services/tms-operations",
+  },
+  { source: "/services/pricing-engines", destination: "/services/pricing-support" },
 ];
 
 /**

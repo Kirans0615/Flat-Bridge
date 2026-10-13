@@ -22,6 +22,10 @@ export default function PrivacyPage() {
         <p className="mt-6 max-w-[60ch] text-body-lg text-current/70">
           {legalPlaceholder.privacy.body}
         </p>
+
+        {/* 10.09.26 revision round, Part 9.3 — the client will paste the
+            previous privacy policy here. Do not render placeholder text on
+            the live page; nothing renders until that copy is supplied. */}
       </Section>
     </main>
   );

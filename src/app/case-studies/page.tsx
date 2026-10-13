@@ -37,51 +37,61 @@ export default function CaseStudiesPage() {
         </div>
       </Section>
 
+      {/* 10.09.26 revision round, Part 7.1 — desktop-only (lg:) density pass:
+          smaller vertical rhythm, narrower reading width, tighter grid gap.
+          Mobile keeps Section's default padding/grid untouched. */}
       {caseStudies.map((study, index) => (
-        <Section key={study.slug} tone={index % 2 === 0 ? "ink" : "paper"} id={study.slug}>
-          <Reveal as="div">
-            <Eyebrow>Sample structure</Eyebrow>
-            <h2 className="mt-3 text-h2 font-[var(--font-display)] font-semibold">{study.client}</h2>
-          </Reveal>
+        <Section
+          key={study.slug}
+          tone={index % 2 === 0 ? "ink" : "paper"}
+          id={study.slug}
+          className="lg:!py-[clamp(3rem,5vw,5.5rem)]"
+        >
+          <div className="lg:mx-auto lg:max-w-[1040px]">
+            <Reveal as="div">
+              <Eyebrow>Sample structure</Eyebrow>
+              <h2 className="mt-3 text-h2 font-[var(--font-display)] font-semibold">{study.client}</h2>
+            </Reveal>
 
-          <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <Reveal as="div">
-                <h3 className="text-h3 font-[var(--font-display)] font-semibold">Situation</h3>
-                <p className="mt-2 max-w-[60ch] text-body-lg">{study.situation}</p>
-              </Reveal>
+            <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-6">
+              <div className="lg:col-span-7">
+                <Reveal as="div">
+                  <h3 className="text-h3 font-[var(--font-display)] font-semibold">Situation</h3>
+                  <p className="mt-2 max-w-[60ch] text-body-lg">{study.situation}</p>
+                </Reveal>
 
-              <Reveal as="div" className="mt-8">
-                <h3 className="text-h3 font-[var(--font-display)] font-semibold">What Flat Bridge ran</h3>
-                <ul className="mt-3 flex flex-col gap-2">
-                  {study.approach.map((item) => (
-                    <li key={item} className="flex gap-3 text-body-lg">
-                      <span
-                        aria-hidden="true"
-                        className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-green)]"
-                      />
-                      {item}
+                <Reveal as="div" className="mt-8">
+                  <h3 className="text-h3 font-[var(--font-display)] font-semibold">What Flat Bridge ran</h3>
+                  <ul className="mt-3 flex flex-col gap-2">
+                    {study.approach.map((item) => (
+                      <li key={item} className="flex gap-3 text-body-lg">
+                        <span
+                          aria-hidden="true"
+                          className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-green)]"
+                        />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              </div>
+
+              <div className="lg:col-span-4 lg:col-start-9">
+                <h3 className="text-h3 font-[var(--font-display)] font-semibold">Results</h3>
+                <ul className="mt-4 flex flex-col gap-6">
+                  {study.results.map((result) => (
+                    <li key={result.metric} className="border-t border-current/20 pt-4">
+                      <p
+                        className="text-h3 font-[var(--font-display)] font-semibold"
+                        style={{ color: index % 2 === 0 ? "var(--color-green-lift)" : "var(--color-green)" }}
+                      >
+                        {result.metric}
+                      </p>
+                      <p className="micro mt-2 text-current/70">Source: {result.source}</p>
                     </li>
                   ))}
                 </ul>
-              </Reveal>
-            </div>
-
-            <div className="lg:col-span-4 lg:col-start-9">
-              <h3 className="text-h3 font-[var(--font-display)] font-semibold">Results</h3>
-              <ul className="mt-4 flex flex-col gap-6">
-                {study.results.map((result) => (
-                  <li key={result.metric} className="border-t border-current/20 pt-4">
-                    <p
-                      className="text-h3 font-[var(--font-display)] font-semibold"
-                      style={{ color: index % 2 === 0 ? "var(--color-green-lift)" : "var(--color-green)" }}
-                    >
-                      {result.metric}
-                    </p>
-                    <p className="micro mt-2 text-current/70">Source: {result.source}</p>
-                  </li>
-                ))}
-              </ul>
+              </div>
             </div>
           </div>
         </Section>

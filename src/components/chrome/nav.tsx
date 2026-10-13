@@ -13,8 +13,8 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import { ChevronDown, Menu, X } from "lucide-react";
 
-import { navCta, primaryNav, servicePillars } from "@/content/nav";
-import { services } from "@/content/services";
+import { navCta, primaryNav } from "@/content/nav";
+import { serviceCategories } from "@/content/services";
 import { sectors } from "@/content/sectors";
 import { media } from "@/lib/media";
 import { D, E, STAGGER } from "@/lib/motion-tokens";
@@ -32,11 +32,12 @@ import { cn } from "@/lib/utils";
  * close hover-intent, Escape + a lightweight focus trap); mobile collapses
  * to a full-screen sheet.
  *
- * Services/Sectors mega-menus read the real `@/content/services` (16) and
- * `@/content/sectors` (6) modules directly — each pillar column samples a
- * few representative capabilities rather than every one of the 16, to keep
- * the menu from becoming a wall of text; "All 16 capabilities" links to the
- * full filterable index at /services.
+ * Services dropdown (10.09.26 revision round, Part 1.2) — a compact,
+ * traditional list: "All 24 capabilities" plus the 4 categories from
+ * `@/content/services`'s `serviceCategories`, each linking to
+ * `/services?category=<id>`. No description paragraphs. Sectors mega-menu
+ * (Part 5.1) now leads with an "All sectors" item at the top, linking to the
+ * `/sectors` landing page, above the per-sector grid.
  */
 
 const FLOAT_THRESHOLD_RATIO = 0.88;
@@ -68,18 +69,6 @@ const SECTOR_LINKS = sectors.map((s) => ({
   href: `/sectors/${s.slug}`,
   promise: s.promise,
 }));
-
-/** Heuristic grouping of the 16 capabilities under the 3 service pillars — a
- * nav/UX judgment call, not a claim about Flat Bridge's org structure. */
-const PILLAR_CAPABILITY_SAMPLES: Record<string, string[]> = {
-  "contact-centre": ["driver-dispatch", "tracking-and-tracing", "appointment-scheduling"],
-  "back-office-support": ["data-entry", "claims-processing", "freight-audit-and-payment"],
-  "digital-transformation-ai": [
-    "transportation-management-systems",
-    "pricing-engines",
-    "edi-and-api-integration",
-  ],
-};
 
 type MegaMenu = "services" | "sectors" | null;
 type Tone = "ink" | "paper";
@@ -230,7 +219,10 @@ export function Nav() {
   // (services, contact, ...) render concrete-on-paper and the nav vanishes.
   const isPaper = tone === "paper";
   const isPaperFloating = isFloating && isPaper;
-  const logo = isPaper ? media.logoLight : media.logoDark;
+  // 10.09.26 revision round, Part 1.1 — white logo on dark/photo backgrounds
+  // (legible against any photo or the ink tone), the existing legible
+  // black+green mark stays on light backgrounds.
+  const logo = isPaper ? media.logoLight : media.logoWhite;
   const linkColor = isPaper ? "text-[var(--color-ink)]" : "text-[var(--color-concrete)]";
 
   return (
@@ -259,9 +251,9 @@ export function Nav() {
               : undefined
           }
         >
-          <Link href="/" data-cursor="link" className="relative z-10 block h-8 w-auto shrink-0">
+          <Link href="/" data-cursor="link" className="relative z-10 block h-10 w-auto shrink-0 sm:h-12">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={logo} alt="Flat Bridge" className="h-8 w-auto" />
+            <img src={logo} alt="Flat Bridge" className="h-10 w-auto sm:h-12" />
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
@@ -321,7 +313,10 @@ export function Nav() {
                           animate={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
                           exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
                           transition={{ duration: D.xs, ease: E.out }}
-                          className="absolute left-1/2 top-full mt-3 w-[min(90vw,720px)] -translate-x-1/2 rounded-lg border border-[var(--color-hairline)] bg-[var(--color-paper)] p-6 text-[var(--color-ink)] shadow-xl"
+                          className={cn(
+                            "absolute left-1/2 top-full mt-3 -translate-x-1/2 rounded-lg border border-[var(--color-hairline)] bg-[var(--color-paper)] text-[var(--color-ink)] shadow-xl",
+                            menu === "services" ? "w-[min(90vw,280px)] p-2" : "w-[min(90vw,720px)] p-6",
+                          )}
                         >
                           {menu === "services" ? <ServicesMegaMenu /> : <SectorsMegaMenu />}
                         </motion.div>
@@ -406,44 +401,25 @@ export function Nav() {
 
 function ServicesMegaMenu() {
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-      {servicePillars.map((pillar) => {
-        const sample = PILLAR_CAPABILITY_SAMPLES[pillar.slug] ?? [];
-        const items = services.filter((s) => sample.includes(s.slug));
-        return (
-          <div key={pillar.slug} className="group">
-            <Link href="/services" data-cursor="link" className="block">
-              <h3 className="text-small font-display font-semibold tracking-tight">
-                {pillar.name}
-              </h3>
-              <span className="mt-1 block h-px w-0 bg-[var(--color-green)] transition-all duration-200 group-hover:w-full" />
-            </Link>
-            <p className="mt-2 text-small text-current/70">{pillar.body}</p>
-            <ul className="mt-3 flex flex-col gap-1.5">
-              {items.map((item) => (
-                <li key={item.slug}>
-                  <Link
-                    href={`/services/${item.slug}`}
-                    data-cursor="link"
-                    className="text-small text-current underline-offset-4 hover:underline"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        );
-      })}
-      <div className="col-span-full mt-2 border-t border-[var(--color-hairline)] pt-4">
+    <div className="flex flex-col gap-1" role="none">
+      <Link
+        href="/services?category=all"
+        data-cursor="link"
+        className="rounded-md px-3 py-2.5 text-small font-semibold text-[var(--color-green)] transition-colors hover:bg-[var(--color-paper-2)]"
+      >
+        All 24 capabilities
+      </Link>
+      <div className="my-1 border-t border-[var(--color-hairline)]" />
+      {serviceCategories.map((category) => (
         <Link
-          href="/services"
+          key={category.id}
+          href={`/services?category=${category.id}`}
           data-cursor="link"
-          className="micro font-medium text-[var(--color-green)] hover:text-[var(--color-green-deep)]"
+          className="rounded-md px-3 py-2.5 text-small font-medium text-current transition-colors hover:bg-[var(--color-paper-2)]"
         >
-          All 16 capabilities
+          {category.label}
         </Link>
-      </div>
+      ))}
     </div>
   );
 }
@@ -451,6 +427,18 @@ function ServicesMegaMenu() {
 function SectorsMegaMenu() {
   return (
     <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+      {/* 10.09.26 revision round, Part 5.1 — "All sectors" leads the
+          dropdown so the /sectors landing page is reachable without
+          picking an individual sector first. */}
+      <div className="col-span-full mb-2 border-b border-[var(--color-hairline)] pb-3">
+        <Link
+          href="/sectors"
+          data-cursor="link"
+          className="micro font-medium text-[var(--color-green)] hover:text-[var(--color-green-deep)]"
+        >
+          All sectors
+        </Link>
+      </div>
       {SECTOR_LINKS.map((sector) => (
         <Link
           key={sector.href}
@@ -470,15 +458,6 @@ function SectorsMegaMenu() {
           </span>
         </Link>
       ))}
-      <div className="col-span-full mt-2 border-t border-[var(--color-hairline)] pt-4">
-        <Link
-          href="/sectors"
-          data-cursor="link"
-          className="micro font-medium text-[var(--color-green)] hover:text-[var(--color-green-deep)]"
-        >
-          All sectors
-        </Link>
-      </div>
     </div>
   );
 }
@@ -583,6 +562,33 @@ function MobileSheet({ open, onClose, sheetRef }: MobileSheetProps) {
                       {item.label}
                     </Link>
                   )}
+
+                  {/* 10.09.26 revision round, Part 1.2 — the compact Services
+                      dropdown's categories, surfaced here since the mobile
+                      sheet has no hover mega-menu of its own. */}
+                  {item.label === "Services" && !MOCKUP_HOME_ONLY ? (
+                    <div className="mt-3 flex flex-col gap-2.5 border-l border-[var(--color-steel-700)] pl-4">
+                      <Link
+                        href="/services?category=all"
+                        data-cursor="link"
+                        onClick={onClose}
+                        className="micro font-medium text-[var(--color-green-lift)]"
+                      >
+                        All 24 capabilities
+                      </Link>
+                      {serviceCategories.map((category) => (
+                        <Link
+                          key={category.id}
+                          href={`/services?category=${category.id}`}
+                          data-cursor="link"
+                          onClick={onClose}
+                          className="micro text-[var(--color-concrete)]"
+                        >
+                          {category.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
                 </motion.div>
               ))}
             </nav>

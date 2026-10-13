@@ -7,6 +7,7 @@ import { Section, Eyebrow } from "@/components/ui/section";
 import { Reveal } from "@/components/motion";
 import { posts, categories, formatPostDate } from "@/content/insights";
 import { slugifyCategory } from "../../slugify-category";
+import { INSIGHTS_ENABLED } from "@/lib/feature-flags";
 
 export function generateStaticParams() {
   return categories.map((category) => ({ slug: slugifyCategory(category) }));
@@ -27,11 +28,13 @@ export async function generateMetadata({
   });
 }
 
+/** 10.09.26 revision round, Part 6.1 — Insights hidden: unrouted (404). */
 export default async function InsightsCategoryPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  if (!INSIGHTS_ENABLED) notFound();
   const { slug } = await params;
   const category = categories.find((c) => slugifyCategory(c) === slug);
   if (!category) notFound();

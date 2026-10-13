@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 import { baseMetadata } from "@/lib/seo";
 import { Section } from "@/components/ui/section";
 import { securityRows } from "@/content/security";
+import { SECURITY_PAGE_ENABLED } from "@/lib/feature-flags";
 
 export function generateMetadata(): Metadata {
   return baseMetadata({
@@ -12,7 +14,11 @@ export function generateMetadata(): Metadata {
   });
 }
 
+/** 10.09.26 revision round, Part 9.5 — hidden pending the Jamaican legal
+ * requirements/approval; unrouted (404), source kept intact behind this
+ * gate so it can come back once content is approved. */
 export default function SecurityPage() {
+  if (!SECURITY_PAGE_ENABLED) notFound();
   return (
     <main id="main">
       <Section tone="paper" id="security-hero">

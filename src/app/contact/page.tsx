@@ -48,32 +48,82 @@ export default function ContactPage() {
               <JmClock />
             </div>
 
-            {/* Stylised SVG map placeholder — no Google Maps embed per brief §15.1 */}
+            {/* 10.09.26 revision round, Part 9.2 — stylised SVG graphic showing
+                Mandeville sits in the Eastern Time Zone, near-shore to the US
+                East Coast. No third-party map embed, site-palette only. */}
             <div className="mt-10 border-t border-[var(--color-hairline)] pt-6">
               <Eyebrow>Where we are</Eyebrow>
               <svg
-                viewBox="0 0 240 160"
+                viewBox="0 0 280 210"
                 role="img"
-                aria-label={`Map showing ${site.location.label}`}
-                className="mt-4 w-full max-w-[280px]"
+                aria-label="Simplified map of the US East Coast and the Caribbean, with the Eastern Time Zone highlighted and Mandeville, Jamaica marked"
+                className="mt-4 w-full max-w-[320px]"
               >
-                <rect x="0" y="0" width="240" height="160" fill="var(--color-paper-2)" rx="4" />
-                <path
-                  d="M30 90 Q60 70 100 78 T170 82 Q195 84 210 74"
-                  fill="none"
-                  stroke="var(--color-hairline)"
-                  strokeWidth="10"
-                  strokeLinecap="round"
+                <rect x="0" y="0" width="280" height="210" fill="var(--color-paper-2)" rx="4" />
+
+                {/* Eastern Time Zone band */}
+                <rect
+                  x="28"
+                  y="12"
+                  width="110"
+                  height="186"
+                  fill="var(--color-green)"
+                  fillOpacity="0.14"
+                  stroke="var(--color-green)"
+                  strokeOpacity="0.4"
+                  strokeDasharray="4 3"
                 />
-                <line x1="0" y1="80" x2="240" y2="80" stroke="var(--color-hairline)" strokeWidth="1" />
-                <line x1="120" y1="0" x2="120" y2="160" stroke="var(--color-hairline)" strokeWidth="1" />
-                <circle cx="118" cy="86" r="10" fill="var(--color-green-wash)" />
-                <circle cx="118" cy="86" r="4" fill="var(--color-green)" />
-                <text x="128" y="90" className="font-mono" fontSize="8" fill="var(--color-ink)">
+                <text
+                  x="83"
+                  y="26"
+                  textAnchor="middle"
+                  className="font-mono"
+                  fontSize="7"
+                  letterSpacing="0.5"
+                  fill="var(--color-green-deep)"
+                >
+                  EASTERN TIME ZONE
+                </text>
+
+                {/* Simplified US East Coast, Maine down to the Florida peninsula */}
+                <path
+                  d="M58 34 L84 30 L90 58 L78 86 L88 112 L72 140 L82 158 L66 182 L58 160 L52 128 L60 100 L46 70 L52 44 Z"
+                  fill="var(--color-hairline)"
+                  stroke="var(--color-steel-700)"
+                  strokeWidth="1"
+                />
+                {/* Simplified Caribbean / Jamaica, south-east of Florida */}
+                <ellipse cx="118" cy="182" rx="20" ry="9" fill="var(--color-hairline)" stroke="var(--color-steel-700)" strokeWidth="1" />
+
+                {/* Connector */}
+                <line
+                  x1="68"
+                  y1="150"
+                  x2="112"
+                  y2="178"
+                  stroke="var(--color-green)"
+                  strokeWidth="1"
+                  strokeDasharray="3 3"
+                />
+
+                {/* US East Coast marker */}
+                <circle cx="68" cy="150" r="4" fill="var(--color-green)" />
+                <text x="76" y="148" className="font-mono" fontSize="7" fill="var(--color-ink)">
+                  US East Coast
+                </text>
+
+                {/* Mandeville marker */}
+                <circle cx="118" cy="182" r="5" fill="var(--color-green-wash)" />
+                <circle cx="118" cy="182" r="2.5" fill="var(--color-green)" />
+                <text x="128" y="186" className="font-mono font-semibold" fontSize="7.5" fill="var(--color-ink)">
                   Mandeville
                 </text>
               </svg>
-              <p className="font-mono text-small text-current/70">{site.location.coordsLabel}</p>
+              <p className="mt-3 max-w-[280px] text-small text-current/70">
+                Mandeville sits in the Eastern Time Zone — real-time overlap with US East Coast business
+                hours.
+              </p>
+              <p className="mt-1 font-mono text-small text-current/70">{site.location.coordsLabel}</p>
             </div>
           </div>
         </div>

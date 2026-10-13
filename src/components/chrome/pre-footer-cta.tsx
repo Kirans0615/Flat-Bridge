@@ -35,8 +35,8 @@ export function PreFooterCTA() {
           Ready to hand something off?
         </h2>
         <p className="max-w-xl text-body-lg text-[var(--color-concrete)]">
-          Tell us the function that&apos;s costing you the most hours. We&apos;ll scope it on the
-          call.
+          Describe the function that&apos;s costing you the most hours. Let&apos;s talk about how
+          we can find efficiencies for you.
         </p>
         <div className="mt-2 flex flex-wrap items-center justify-center gap-4">
           <Link
@@ -51,7 +51,7 @@ export function PreFooterCTA() {
             data-cursor="link"
             className="rounded-full border border-[var(--color-steel-700)] px-6 py-3 text-small font-medium text-[var(--color-concrete)] transition-colors hover:border-[var(--color-green-lift)] hover:text-[var(--color-paper)]"
           >
-            See our capabilities
+            Explore our capabilities
           </Link>
         </div>
       </div>

@@ -96,7 +96,9 @@ export function ApplicationForm() {
         />
       </div>
 
-      <Field label="LinkedIn">{(p) => <Input {...p} name="linkedin" type="url" />}</Field>
+      <Field label="Your LinkedIn Profile" required>
+        {(p) => <Input {...p} name="linkedin" type="url" required />}
+      </Field>
       <Field label="Message">{(p) => <Textarea {...p} name="message" />}</Field>
 
       {status === "error" ? (

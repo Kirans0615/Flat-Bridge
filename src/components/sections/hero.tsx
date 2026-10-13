@@ -219,15 +219,6 @@ export default function Hero() {
                   </SplitText>
                 )}
               </span>
-              <span className="block overflow-hidden pb-[0.18em] -mb-[0.18em]">
-                {reducedMotion ? (
-                  heroContent.h1Line2
-                ) : (
-                  <SplitText as="span" mode="line" delay={0.32}>
-                    {heroContent.h1Line2}
-                  </SplitText>
-                )}
-              </span>
             </h1>
 
             {/* Rendered opacity:1 from first paint deliberately — this is the page's LCP

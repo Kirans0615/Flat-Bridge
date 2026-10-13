@@ -14,7 +14,6 @@ import {
   Nearshore,
   Stats,
   Testimonials,
-  InsightsTeaser,
   BookACall,
 } from "@/components/sections";
 
@@ -48,7 +47,6 @@ export default function HomePage() {
       <Nearshore />
       <Stats />
       <Testimonials />
-      <InsightsTeaser />
       <BookACall />
     </main>
   );

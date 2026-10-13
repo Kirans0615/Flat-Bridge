@@ -1,31 +1,15 @@
+/** 10.09.26 revision round, Part 1.1 — Insights removed (hidden per Part 6.1),
+ * Process added right after Sectors. */
 export const primaryNav = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Sectors", href: "/sectors" },
+  { label: "Process", href: "/process" },
   { label: "Case studies", href: "/case-studies" },
-  { label: "Insights", href: "/insights" },
   { label: "Careers", href: "/careers" },
 ] as const;
 
 export const navCta = { label: "Book a discovery call", href: "/contact" } as const;
-
-export const servicePillars = [
-  {
-    slug: "contact-centre",
-    name: "Contact centre",
-    body: "Voice, chat, web and email — a trained, English-speaking team handling inbound and outbound contact for your operation.",
-  },
-  {
-    slug: "back-office-support",
-    name: "Back office support",
-    body: "Data cleansing and entry, finance, HR and payroll support that runs behind the scenes so your team doesn't have to.",
-  },
-  {
-    slug: "digital-transformation-ai",
-    name: "Digital transformation and AI",
-    body: "RPA, chatbots, voice biometrics and speech analytics layered onto the systems you already run.",
-  },
-] as const;
 
 export const footerColumns = {
   company: [
@@ -35,11 +19,15 @@ export const footerColumns = {
     { label: "Case studies", href: "/case-studies" },
     { label: "Contact", href: "/contact" },
   ],
-  services: [{ label: "All 16 capabilities", href: "/services" }],
+  /** 10.09.26 revision round, Part 1.4 — "All 24 capabilities" + the 4 new
+   * service categories, each pointing at its filtered /services view. */
+  services: [
+    { label: "All 24 capabilities", href: "/services?category=all" },
+  ],
   sectors: [{ label: "All sectors", href: "/sectors" }],
+  /** Part 1.4 — "Security & compliance" link removed (page unrouted, 9.5). */
   legal: [
     { label: "Privacy", href: "/privacy" },
     { label: "Terms", href: "/terms" },
-    { label: "Security & compliance", href: "/security" },
   ],
 } as const;

@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-import { footerColumns, servicePillars } from "@/content/nav";
+import { footerColumns } from "@/content/nav";
+import { serviceCategories } from "@/content/services";
 import { site } from "@/content/site";
 import { Parallax } from "@/components/motion/Parallax";
 
@@ -13,10 +14,9 @@ import { Parallax } from "@/components/motion/Parallax";
  * even ones not built yet — never `href="#"`), and a giant clipped
  * `FLAT BRIDGE` wordmark with a one-time green sweep.
  *
- * CONTENT GAP: the Services column adds the 3 real pillar names from
- * `servicePillars` (`@/content/nav`) as placeholder anchors, all pointing at
- * `/services` — there's no per-pillar route yet. Swap in real hrefs once
- * `@/content/services.ts` defines them.
+ * Services column (10.09.26 revision round, Part 1.4): "All 24 capabilities"
+ * plus the 4 service categories from `@/content/services`'s
+ * `serviceCategories`, each linking to `/services?category=<id>`.
  */
 
 function useJamaicaClock() {
@@ -82,10 +82,10 @@ export function Footer() {
           </div>
 
           <div className="flex flex-col items-start gap-1 sm:items-end">
-            <span className="micro font-mono tabular-nums text-[var(--color-concrete)]" suppressHydrationWarning>
+            <span className="text-small font-mono font-semibold tabular-nums text-white" suppressHydrationWarning>
               {clock ? `${clock.time} JM` : "--:--:-- JM"}
             </span>
-            <span className="micro text-current/70" suppressHydrationWarning>
+            <span className="text-small font-medium text-white" suppressHydrationWarning>
               {clock ? clock.status : " "}
             </span>
           </div>
@@ -101,7 +101,10 @@ export function Footer() {
             heading="Services"
             links={[
               ...footerColumns.services.map((l) => ({ label: l.label, href: l.href })),
-              ...servicePillars.map((p) => ({ label: p.name, href: "/services" })),
+              ...serviceCategories.map((c) => ({
+                label: c.label,
+                href: `/services?category=${c.id}`,
+              })),
             ]}
           />
           <FooterColumn

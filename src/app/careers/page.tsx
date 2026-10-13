@@ -8,7 +8,6 @@ import { SectionVideoBg } from "@/components/sections/section-video-bg";
 import { Reveal, ClipReveal } from "@/components/motion";
 import { ApplicationForm } from "@/components/sections/application-form";
 import { roles, careersLede } from "@/content/careers";
-import { nearshore } from "@/content/homepage";
 
 export function generateMetadata(): Metadata {
   return baseMetadata({
@@ -18,20 +17,31 @@ export function generateMetadata(): Metadata {
   });
 }
 
-const whatItsLikeHere = [
+/** 10.09.26 revision round, Part 8.2 — replaces the old training-program /
+ * CMU-partnership / range-of-roles cards. */
+const whatItsLikeHereIntro =
+  "Flat Bridge opportunities often begin with Operations, the foundation and first rotation in becoming a supply chain specialist. Later rotations include Load Management, Carrier Sales and Business Development, Crisis Management, and Client Development.";
+
+const whatItsLikeHere: { title: string; items?: string[]; body?: string }[] = [
   {
-    title: "A structured training program",
-    body:
-      nearshore.facts.find((f) => f.label === "Training")?.value ??
-      "A defined training period before an associate takes on client-facing work.",
+    title: "We are",
+    items: ["Full time", "In-office", "Locally managed", "Mandeville based"],
   },
   {
-    title: "A partnership with CMU",
-    body: nearshore.partner,
+    title: "We are not",
+    body: "A call center",
   },
   {
-    title: "A range of roles",
-    body: "Dispatch, track & trace, carrier sales, data, claims and TMS work — not one fixed job description.",
+    title: "Compensation & benefits",
+    items: [
+      "Strong starting salary",
+      "Industry-leading training",
+      "Health card",
+      "Continuing education",
+      "Promotions from within",
+      "Monday – Friday work week",
+      "Collaboration with US peers",
+    ],
   },
 ];
 
@@ -58,12 +68,29 @@ export default function CareersPage() {
       {/* What it's like here */}
       <Section tone="paper" id="what-its-like">
         <Eyebrow>What it&apos;s like here</Eyebrow>
-        <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
+        <Reveal as="div">
+          <p className="mt-4 max-w-[68ch] text-body-lg">{whatItsLikeHereIntro}</p>
+        </Reveal>
+        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
           {whatItsLikeHere.map((item) => (
             <Reveal key={item.title} as="div">
               <div className="border-t border-[var(--color-hairline)] pt-5">
                 <h2 className="text-h3 font-[var(--font-display)] font-semibold">{item.title}</h2>
-                <p className="mt-2 max-w-[36ch] text-body text-current/70">{item.body}</p>
+                {item.items ? (
+                  <ul className="mt-3 flex flex-col gap-2">
+                    {item.items.map((line) => (
+                      <li key={line} className="flex gap-2.5 text-body text-current/70">
+                        <span
+                          aria-hidden="true"
+                          className="mt-2 h-1 w-1 shrink-0 rounded-full bg-[var(--color-green)]"
+                        />
+                        {line}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-2 max-w-[36ch] text-body text-current/70">{item.body}</p>
+                )}
               </div>
             </Reveal>
           ))}

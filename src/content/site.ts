@@ -21,8 +21,11 @@ export const site = {
   },
   phone: "+1 (754) 273-8895",
   phoneHref: "tel:+17542738895",
-  email: "sales@goflatbridge.com",
-  emailHref: "mailto:sales@goflatbridge.com",
+  /** 10.09.26 revision round, Part 9.1 — changed from sales@ to match the
+   * "Book a discovery call" CTA. FLAG (Part 10): client to confirm this
+   * inbox exists before deploying. */
+  email: "discovery@goflatbridge.com",
+  emailHref: "mailto:discovery@goflatbridge.com",
   socials: {
     linkedin: "https://linkedin.com/company/flat-bridge-limited",
     facebook: "https://facebook.com",
@@ -36,8 +39,7 @@ export const site = {
 export const heroContent = {
   kicker: "Flat Bridge Ltd · Mandeville, Jamaica",
   h1Line1: "Built to carry the load",
-  h1Line2: "since 1997",
-  sub: "Supply chain and logistics BPO. We take the load boards, the check calls, the appointments and the claims — so your team can run the business.",
+  sub: "Strategic and skilled supply chain and logistics BPO. We handle the load boards, check calls, appointments, troubleshooting, and claims — so your team can grow your business.",
   /** Legacy subhead, kept for client comparison per brief §8.1 — not shipped as primary copy. */
   heroSubAlt:
     "Expanding Supply Chain & Logistics BPO Services for Enhanced Efficiency and Growth",

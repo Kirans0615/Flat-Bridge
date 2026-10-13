@@ -4,7 +4,10 @@ import { Section, Eyebrow } from "@/components/ui/section";
 import { services } from "@/content/services";
 import { cn } from "@/lib/utils";
 
-const FEATURED_SLUGS = ["driver-dispatch", "tracking-and-tracing", "data-entry", "load-postings"] as const;
+// "data-entry" was removed in the 10.09.26 catalog revision (Part 3.1) with no
+// direct successor — swapped for "invoice-auditing", a non-placeholder entry
+// in the same back-office spirit, to keep this a genuine 2x2 of four.
+const FEATURED_SLUGS = ["driver-dispatch", "tracking-and-tracing", "invoice-auditing", "load-postings"] as const;
 
 /**
  * brief §8.5 — asymmetric 2x2, not four equal cards. Items 1+4 span 7 cols,

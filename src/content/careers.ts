@@ -63,6 +63,6 @@ export const roles: Role[] = [
   },
 ];
 
-/** brief §14 hero lede, verbatim from legacy copy. */
+/** 10.09.26 revision round, Part 8.1 — replaces the legacy hero lede. */
 export const careersLede =
-  "Whether you're a recent college graduate stepping into the professional world or someone re-entering the workforce, there's a place for you on the Flat Bridge team.";
+  "Whether you are a recent college graduate or a seasoned logistics professional, there is a place for you on the Flat Bridge team.";

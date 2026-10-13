@@ -27,6 +27,10 @@ export const media = {
   careersVideo: `${LOCAL}/careers-hero.mp4`,
   logoDark: `${LOCAL}/logo-green.png`,
   logoLight: `${LOCAL}/logo-black-green.png`,
+  /** 10.09.26 revision round, Part 1.1 — pure-white silhouette (alpha channel
+   * lifted from logo-green.png) for dark/photo header backgrounds; logoLight
+   * stays the legible version for light backgrounds. */
+  logoWhite: `${LOCAL}/logo-white.png`,
   teamPhoto: `${LOCAL}/team-flatbridge-2026.png`,
   aboutHeroBg: `${LOCAL}/about-hero-bg.jpg`,
   heroServices: {
