@@ -23,7 +23,7 @@ export default function Edge() {
 
   return (
     <Section tone="ink" id="edge">
-      <h2 className="max-w-[36ch] text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
+      <h2 className="max-w-[36ch] text-h2 font-display font-semibold tracking-[-0.03em]">
         {edge.h2}
       </h2>
 

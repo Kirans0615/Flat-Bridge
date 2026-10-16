@@ -10,7 +10,7 @@
  * block is now this page's "who we are" statement (Part 4.2's standalone
  * section is removed). */
 export const aboutHero = {
-  h1: "Flat Bridge is a trusted resource of English-speaking, logistics-minded professionals.",
+  h1: "A trusted team of logistics professionals.",
   lede: "Flat Bridge's skilled workforce is trained in industry trends, supply chain platforms, and best practices in tracking, tracing, appointments, and carrier sales. They bring their training into your systems.",
   cta: { label: "Talk to us", href: "/contact" },
 } as const;

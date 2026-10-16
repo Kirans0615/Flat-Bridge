@@ -62,7 +62,7 @@ export default async function ServiceDetailPage({
       <SplitText
         as="h1"
         mode="line"
-        className={`mt-4 max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold${heroImage ? " text-white" : ""}`}
+        className={`mt-4 max-w-[24ch] text-h1 font-display font-semibold${heroImage ? " text-white" : ""}`}
       >
         {service.name}
       </SplitText>
@@ -169,20 +169,20 @@ export default async function ServiceDetailPage({
           <Magnetic strength={0.2}>
             <Link href={`/services/${prev.slug}`} data-cursor="link" className="block">
               <p className="micro text-current/70">Previous capability</p>
-              <p className="mt-1 text-h3 font-[var(--font-display)] font-semibold">{prev.name}</p>
+              <p className="mt-1 text-h3 font-display font-semibold">{prev.name}</p>
             </Link>
           </Magnetic>
           <Magnetic strength={0.2}>
             <Link href={`/services/${next.slug}`} data-cursor="link" className="block sm:text-right">
               <p className="micro text-current/70">Next capability</p>
-              <p className="mt-1 text-h3 font-[var(--font-display)] font-semibold">{next.name}</p>
+              <p className="mt-1 text-h3 font-display font-semibold">{next.name}</p>
             </Link>
           </Magnetic>
         </div>
       </Section>
 
       <Section tone="ink" id="service-cta">
-        <h2 className="text-h2 font-[var(--font-display)] font-semibold text-white">
+        <h2 className="text-h2 font-display font-semibold text-white">
           Book a discovery call
         </h2>
         <p className="mt-3 max-w-[52ch] text-body-lg text-[var(--color-concrete)]">

@@ -19,7 +19,7 @@ export default function Delivers() {
       <div className="grid grid-cols-1 gap-16 md:grid-cols-12">
         <div className="md:col-span-6">
           <Eyebrow>{delivers.eyebrow}</Eyebrow>
-          <Reveal as="h2" className="mt-4 text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
+          <Reveal as="h2" className="mt-4 text-h2 font-display font-semibold tracking-[-0.03em]">
             {delivers.h2}
           </Reveal>
           <p className="mt-4 text-body-lg text-current/70">{delivers.lede}</p>
@@ -35,7 +35,7 @@ export default function Delivers() {
         <div className="md:col-span-5 md:col-start-8">
           <div className="relative grid grid-cols-2 gap-8">
             <div className="border-t border-[var(--color-hairline)] pt-6">
-              <NumberTicker value={yearsInLogistics} className="text-d2 font-[var(--font-display)]" />
+              <NumberTicker value={yearsInLogistics} className="text-d2 font-display" />
               <p className="mt-2 text-small text-current/70">Years in logistics</p>
             </div>
             <div className="border-t border-[var(--color-hairline)] pt-6">
@@ -43,7 +43,7 @@ export default function Delivers() {
                 value={retention.value}
                 suffix={retention.suffix}
                 decimals={retention.decimals}
-                className="text-d2 font-[var(--font-display)]"
+                className="text-d2 font-display"
               />
               <p className="mt-2 text-small text-current/70">{retention.label}</p>
             </div>

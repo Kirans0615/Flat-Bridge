@@ -17,7 +17,7 @@ export default function Stats() {
               value={stat.value}
               suffix={stat.suffix}
               decimals={stat.decimals}
-              className="text-d2 font-[var(--font-display)]"
+              className="text-d2 font-display"
             />
             <p className="mt-2 text-small text-current/70">{stat.label}</p>
           </div>

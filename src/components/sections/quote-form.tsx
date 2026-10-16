@@ -42,7 +42,7 @@ export function QuoteForm({ tone = "ink" as "ink" | "paper" }) {
   if (status === "success") {
     return (
       <div role="status" aria-live="polite" className="flex flex-col gap-2">
-        <h3 id={headingId} tabIndex={-1} className="text-h3 font-[var(--font-display)]" ref={(el) => el?.focus()}>
+        <h3 id={headingId} tabIndex={-1} className="text-h3 font-display" ref={(el) => el?.focus()}>
           Got it. We&apos;ll reply within one business day.
         </h3>
         <p className="font-mono text-small text-current/70">

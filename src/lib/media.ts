@@ -25,6 +25,8 @@ export const media = {
   insightsVideo: `${LOCAL}/insights-hero.mp4`,
   /** Careers page hero background (Kiran, 2026-09-23; 1080p loop). */
   careersVideo: `${LOCAL}/careers-hero.mp4`,
+  /** Process page hero background (Kiran, 2026-10-16; 1080p loop). */
+  processVideo: `${LOCAL}/process-hero.mp4`,
   logoDark: `${LOCAL}/logo-green.png`,
   logoLight: `${LOCAL}/logo-black-green.png`,
   /** 10.09.26 revision round, Part 1.1 — pure-white silhouette (alpha channel

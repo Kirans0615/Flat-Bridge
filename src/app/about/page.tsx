@@ -62,7 +62,7 @@ export default function AboutPage() {
           <SplitText
             as="h1"
             mode="line"
-            className="text-h1 font-[var(--font-display)] font-semibold text-white"
+            className="text-h1 font-display font-semibold text-white"
           >
             {aboutHero.h1}
           </SplitText>
@@ -80,15 +80,15 @@ export default function AboutPage() {
       </Section>
 
       {/* Why choose us */}
-      <Section tone="ink" id="why-choose-us">
+      <Section tone="paper" id="why-choose-us">
         <Eyebrow>Why Flat Bridge</Eyebrow>
-        <h2 className="mt-3 text-h2 font-[var(--font-display)] font-semibold">{whyChooseUs.h2}</h2>
+        <h2 className="mt-3 text-h2 font-display font-semibold">{whyChooseUs.h2}</h2>
         <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2">
           {whyChooseUs.rows.map((row) => (
             <Reveal key={row.title} as="div">
-              <div className="border-t border-[var(--color-steel-700)] pt-5">
-                <h3 className="text-h3 font-[var(--font-display)] font-semibold">{row.title}</h3>
-                <p className="mt-2 max-w-[52ch] text-body-lg text-[var(--color-concrete)]">{row.body}</p>
+              <div className="border-t border-[var(--color-hairline)] pt-5">
+                <h3 className="text-h3 font-display font-semibold">{row.title}</h3>
+                <p className="mt-2 max-w-[52ch] text-body-lg text-current/70">{row.body}</p>
               </div>
             </Reveal>
           ))}
@@ -103,7 +103,7 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 items-center gap-10 px-[clamp(1.25rem,5vw,6rem)] lg:grid-cols-2 lg:gap-16">
           <div>
             <Eyebrow>Our team</Eyebrow>
-            <h2 className="mt-3 text-h2 font-[var(--font-display)] font-semibold">{ourTeam.h2}</h2>
+            <h2 className="mt-3 text-h2 font-display font-semibold">{ourTeam.h2}</h2>
             <Reveal>
               <div className="mt-6 flex max-w-[60ch] flex-col gap-5 text-body-lg text-[var(--color-concrete)]">
                 <p>{ourTeam.body}</p>

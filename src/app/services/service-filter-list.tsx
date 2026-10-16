@@ -1,10 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import type { Service } from "@/content/services";
 import { serviceCategories } from "@/content/services";
+import { useLenis } from "@/lib/use-lenis";
 
 const CATEGORIES: Service["category"][] = serviceCategories.map((c) => c.label);
 
@@ -26,9 +27,32 @@ function categoryFromParam(param: string | null): "All" | Service["category"] {
  */
 export function ServiceFilterList({ services }: { services: Service[] }) {
   const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category");
+  const lenis = useLenis();
   const [active, setActive] = useState<"All" | Service["category"]>(() =>
-    categoryFromParam(searchParams.get("category"))
+    categoryFromParam(categoryParam)
   );
+
+  // The nav dropdown and footer links navigate here with a new `?category=`
+  // while this page stays mounted (same route), so the useState initializer
+  // above only catches the first load — this keeps later clicks in sync too.
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setActive(categoryFromParam(categoryParam));
+  }, [categoryParam]);
+
+  // Jump straight to the filtered list, past the hero, whenever a category
+  // link lands here — matches the nav dropdown's "take me to that category" intent.
+  useEffect(() => {
+    if (!categoryParam) return;
+    const el = document.getElementById("all-services");
+    if (!el) return;
+    if (lenis) {
+      lenis.scrollTo(el, { offset: 0 });
+    } else {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [categoryParam, lenis]);
 
   const filtered = useMemo(
     () => (active === "All" ? services : services.filter((s) => s.category === active)),
@@ -73,7 +97,7 @@ export function ServiceFilterList({ services }: { services: Service[] }) {
               />
               <div className="flex-1 transition-transform group-hover:translate-x-2">
                 <p className="micro text-current/70">{service.category}</p>
-                <p className="mt-1 text-h3 font-[var(--font-display)] font-semibold">{service.name}</p>
+                <p className="mt-1 text-h3 font-display font-semibold">{service.name}</p>
                 <p className="mt-1 max-w-[60ch] text-body text-current/70">{service.lede}</p>
               </div>
             </Link>

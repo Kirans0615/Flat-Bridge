@@ -20,7 +20,7 @@ export function PlatformMarquee({ platforms }: { platforms: readonly string[] })
   const item = (platform: string) => (
     <span
       key={platform}
-      className="px-6 text-h3 font-[var(--font-display)] font-semibold text-current/70"
+      className="px-6 text-h3 font-display font-semibold text-current/70"
     >
       {platform}
     </span>

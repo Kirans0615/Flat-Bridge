@@ -6,7 +6,6 @@ import { notFound } from "next/navigation";
 import { baseMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { media } from "@/lib/media";
 import { Section, Eyebrow } from "@/components/ui/section";
-import { Button } from "@/components/ui/button";
 import { Reveal, SplitText, Marquee } from "@/components/motion";
 import { sectors } from "@/content/sectors";
 import { services } from "@/content/services";
@@ -92,7 +91,7 @@ export default async function SectorDetailPage({
             <SplitText
               as="h1"
               mode="line"
-              className="mt-4 max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold text-white"
+              className="mt-4 max-w-[24ch] text-h1 font-display font-semibold text-white"
             >
               {sector.name}
             </SplitText>
@@ -118,7 +117,7 @@ export default async function SectorDetailPage({
                   aria-hidden="true"
                   className="absolute left-0 top-1 h-full w-[2px] bg-[var(--color-green)]"
                 />
-                <h2 className="text-h3 font-[var(--font-display)] font-semibold">{benefit.label}</h2>
+                <h2 className="text-h3 font-display font-semibold">{benefit.label}</h2>
                 <p className="mt-2 text-body text-current/70">{benefit.body}</p>
               </div>
             </Reveal>
@@ -129,7 +128,7 @@ export default async function SectorDetailPage({
       {/* Challenge tabs */}
       <Section tone="ink" id="challenge">
         <Eyebrow>The challenge</Eyebrow>
-        <h2 className="mt-3 text-h2 font-[var(--font-display)] font-semibold text-white">
+        <h2 className="mt-3 text-h2 font-display font-semibold text-white">
           Where the work actually goes
         </h2>
         <div className="mt-8">
@@ -169,7 +168,7 @@ export default async function SectorDetailPage({
           {industries.map((industry) => (
             <span
               key={industry}
-              className="px-6 text-h3 font-[var(--font-display)] font-semibold text-current/70"
+              className="px-6 text-h3 font-display font-semibold text-current/70"
             >
               {industry}
             </span>
@@ -181,7 +180,7 @@ export default async function SectorDetailPage({
       <Section tone="paper" id="quote">
         <Reveal>
           <blockquote className="mx-auto max-w-[44ch] text-center">
-            <SplitText as="p" mode="line" className="text-h2 font-[var(--font-display)] font-semibold">
+            <SplitText as="p" mode="line" className="text-h2 font-display font-semibold">
               {`"${sector.quote.text}"`}
             </SplitText>
             <cite className="mt-6 block text-body text-current/70 not-italic">
@@ -189,21 +188,6 @@ export default async function SectorDetailPage({
             </cite>
           </blockquote>
         </Reveal>
-      </Section>
-
-      {/* CTA */}
-      <Section tone="ink" id="cta">
-        <h2 className="text-h2 font-[var(--font-display)] font-semibold text-white">
-          Ready to hand something off?
-        </h2>
-        <p className="mt-3 max-w-[52ch] text-body-lg text-[var(--color-concrete)]">
-          Tell us what {sector.name.toLowerCase()} is costing your team. We&apos;ll scope it on the call.
-        </p>
-        <div className="mt-8">
-          <Button href="/contact" variant="solid">
-            Book a discovery call
-          </Button>
-        </div>
       </Section>
     </main>
   );

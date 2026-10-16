@@ -16,7 +16,7 @@ export default function Modes() {
   return (
     <Section tone="ink" id="modes" className="px-0">
       <div className="px-[clamp(1.25rem,5vw,6rem)]">
-        <h2 className="max-w-[36ch] text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
+        <h2 className="max-w-[36ch] text-h2 font-display font-semibold tracking-[-0.03em]">
           Three ways we plug in
         </h2>
       </div>
@@ -36,7 +36,7 @@ export default function Modes() {
                 className="absolute left-[-1px] top-0 hidden h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-[var(--color-green-lift)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:block"
               />
             ) : null}
-            <h3 className="text-h3 font-[var(--font-display)]">
+            <h3 className="text-h3 font-display">
               <SplitText as="span" mode="word" delay={index * 0.09}>
                 {mode.title}
               </SplitText>

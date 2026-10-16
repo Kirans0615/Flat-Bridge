@@ -118,7 +118,7 @@ export function Preloader() {
             animate={{ clipPath: textVisible ? "inset(0 0% 0 0)" : "inset(0 100% 0 0)" }}
             transition={{ duration: TEXT_MS / 1000, ease: E.out }}
           >
-            Built to carry the load
+            Built To Carry The Load.
           </motion.p>
         </div>
       </div>

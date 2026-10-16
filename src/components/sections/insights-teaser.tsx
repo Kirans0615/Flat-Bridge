@@ -15,7 +15,7 @@ export default function InsightsTeaser() {
   return (
     <Section tone="paper" id="insights">
       <Eyebrow>Insights</Eyebrow>
-      <h2 className="mt-4 max-w-[36ch] text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
+      <h2 className="mt-4 max-w-[36ch] text-h2 font-display font-semibold tracking-[-0.03em]">
         From the team
       </h2>
 
@@ -32,7 +32,7 @@ export default function InsightsTeaser() {
                   {new Date(post.date).toLocaleDateString("en-US", { day: "numeric", month: "short" })} ·{" "}
                   {post.category}
                 </p>
-                <h3 className="mt-4 text-h3 font-[var(--font-display)] transition-transform duration-300 group-hover:translate-x-1.5">
+                <h3 className="mt-4 text-h3 font-display transition-transform duration-300 group-hover:translate-x-1.5">
                   {post.title}
                 </h3>
                 <p className="mt-4 max-w-[52ch] text-body text-current/70">{post.excerpt}</p>

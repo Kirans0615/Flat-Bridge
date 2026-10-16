@@ -103,7 +103,7 @@ export default function OpsConsole() {
 
   return (
     <Section tone="ink" id="ops-console">
-      <h2 className="max-w-[32ch] text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
+      <h2 className="max-w-[32ch] text-h2 font-display font-semibold tracking-[-0.03em]">
         {opsConsole.h2}
       </h2>
       <p className="mt-4 max-w-[52ch] text-body-lg text-[var(--color-concrete)]">{opsConsole.sub}</p>

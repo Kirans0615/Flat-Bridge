@@ -1,7 +1,7 @@
 /**
- * Homepage section barrel — brief §8. `quote-form.tsx` and
- * `application-form.tsx` are intentionally not re-exported here; they're
- * consumed directly where needed and are out of scope for this barrel.
+ * Homepage section barrel — brief §8. `quote-form.tsx` is intentionally not
+ * re-exported here; it's consumed directly where needed and is out of scope
+ * for this barrel.
  */
 export { default as Hero } from "./hero";
 export { default as Delivers } from "./delivers";

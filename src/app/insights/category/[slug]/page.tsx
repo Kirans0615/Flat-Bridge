@@ -51,7 +51,7 @@ export default async function InsightsCategoryPage({
           <span aria-hidden="true"> / </span>
           <span>{category}</span>
         </nav>
-        <h1 className="mt-4 max-w-[32ch] text-h1 font-[var(--font-display)] font-semibold">{category}</h1>
+        <h1 className="mt-4 max-w-[32ch] text-h1 font-display font-semibold">{category}</h1>
         <p className="mt-4 text-body-lg text-current/70">
           {matches.length} {matches.length === 1 ? "post" : "posts"} in this category.
         </p>
@@ -68,7 +68,7 @@ export default async function InsightsCategoryPage({
                 <time dateTime={post.date} className="micro text-current/70">
                   {formatPostDate(post.date)}
                 </time>
-                <h2 className="mt-3 max-w-[40ch] text-h2 font-[var(--font-display)] font-semibold text-white">
+                <h2 className="mt-3 max-w-[40ch] text-h2 font-display font-semibold text-white">
                   <Link href={`/insights/${post.slug}`} data-cursor="link">
                     {post.title}
                   </Link>

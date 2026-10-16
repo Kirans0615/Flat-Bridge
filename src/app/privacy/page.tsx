@@ -16,7 +16,7 @@ export default function PrivacyPage() {
   return (
     <main id="main">
       <Section tone="paper" id="privacy">
-        <h1 className="max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold">
+        <h1 className="max-w-[24ch] text-h1 font-display font-semibold">
           {legalPlaceholder.privacy.title}
         </h1>
         <p className="mt-6 max-w-[60ch] text-body-lg text-current/70">

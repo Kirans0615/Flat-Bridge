@@ -1,17 +1,19 @@
 /**
- * brief §12. No real case studies exist yet — the legacy site promises
- * "stories of success" and delivers none (docs/legacy-audit.md notes this
- * under "Template leftovers"). These three are anonymised, explicitly
- * `status: 'placeholder'`, and every number is footnoted to the existing
- * site claim it's drawn from — nothing here is a new statistic.
+ * brief §12. The legacy site promises "stories of success" and delivered
+ * none (docs/legacy-audit.md, "Template leftovers"). The first three below
+ * are anonymised placeholders — `status: 'placeholder'` — and every number
+ * is footnoted to the existing site claim it's drawn from, nothing invented.
+ * `us-food-ingredients-shipper` and `multi-site-warehouse-operator`
+ * (2026-10-16) are real, client-supplied case studies — `status: 'real'`,
+ * no footnote needed since the numbers came directly from Flat Bridge.
  */
 export interface CaseStudy {
   slug: string;
   client: string;
   situation: string;
   approach: string[];
-  results: { metric: string; source: string }[];
-  status: "placeholder";
+  results: { metric: string; source?: string }[];
+  status: "placeholder" | "real";
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -66,5 +68,35 @@ export const caseStudies: CaseStudy[] = [
       },
     ],
     status: "placeholder",
+  },
+  {
+    slug: "food-ingredients-shipper",
+    client: "A food ingredients shipper",
+    situation:
+      "A shipper that needed full load-management capability (pricing, tendering, tracking) without the cost of licensing, configuring and staffing its own TMS.",
+    approach: [
+      "Shipper's freight run on Flat Bridge's best-in-class TMS instance",
+      "Load pricing and carrier tendering managed by the Flat Bridge team",
+      "Shipment tracking and status updates through delivery",
+    ],
+    results: [{ metric: "28% reduction in annual freight spend" }],
+    status: "real",
+  },
+  {
+    slug: "multi-site-warehouse-operator",
+    client: "A multi-site warehouse operator",
+    situation:
+      "A warehouse operator whose locations in Chicago, Portland and Los Angeles each carried their own back-office load (inventory, dock scheduling and shipping paperwork) on top of floor operations.",
+    approach: [
+      "Inventory management and reconciliation",
+      "Inbound and outbound appointment scheduling",
+      "Bill of lading creation and shipping documentation",
+    ],
+    results: [
+      {
+        metric: "30% leaner on-site headcount across three locations, with zero on-site admin staff",
+      },
+    ],
+    status: "real",
   },
 ];

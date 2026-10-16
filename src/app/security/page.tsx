@@ -22,7 +22,7 @@ export default function SecurityPage() {
   return (
     <main id="main">
       <Section tone="paper" id="security-hero">
-        <h1 className="max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold">
+        <h1 className="max-w-[24ch] text-h1 font-display font-semibold">
           Security &amp; compliance
         </h1>
         <p className="mt-4 max-w-[56ch] text-body-lg text-current/70">

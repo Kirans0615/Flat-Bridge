@@ -23,7 +23,7 @@ export default function SectorsRows() {
   return (
     <Section tone="paper" id="sectors">
       <Eyebrow>Sectors</Eyebrow>
-      <h2 className="mt-4 max-w-[36ch] text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
+      <h2 className="mt-4 max-w-[36ch] text-h2 font-display font-semibold tracking-[-0.03em]">
         Built for how each sector actually runs
       </h2>
 
@@ -44,7 +44,7 @@ export default function SectorsRows() {
                 <Image src={media[sector.imageKey]["900"]} alt="" fill sizes="100vw" className="object-cover" />
               </div>
               <div>
-                <h3 className="text-h3 font-[var(--font-display)]">{sector.name}</h3>
+                <h3 className="text-h3 font-display">{sector.name}</h3>
                 <p className="mt-2 text-small text-current/70">{sector.promise}</p>
               </div>
             </div>
@@ -52,7 +52,7 @@ export default function SectorsRows() {
             {/* Desktop: hover reveal */}
             <div className="hidden w-full md:flex md:items-center md:justify-between md:gap-8">
               <div className="relative z-10 flex items-baseline gap-8 transition-transform duration-300 ease-[var(--ease-out)] group-hover:translate-x-6">
-                <h3 className="text-h3 font-[var(--font-display)]">{sector.name}</h3>
+                <h3 className="text-h3 font-display">{sector.name}</h3>
                 <p className="max-w-[38ch] text-small text-current/70 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   {sector.promise}
                 </p>

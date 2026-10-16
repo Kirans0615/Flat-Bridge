@@ -18,7 +18,7 @@ export default function ContactPage() {
   return (
     <main id="main">
       <Section tone="paper" id="contact-hero">
-        <h1 className="max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold">
+        <h1 className="max-w-[24ch] text-h1 font-display font-semibold">
           Let&apos;s talk about what you&apos;re carrying.
         </h1>
 
@@ -31,19 +31,19 @@ export default function ContactPage() {
             <div className="flex flex-col gap-6 border-t border-[var(--color-hairline)] pt-6">
               <div>
                 <p className="micro text-current/70">Phone</p>
-                <a href={site.phoneHref} className="mt-1 block text-h3 font-[var(--font-display)] font-semibold">
+                <a href={site.phoneHref} className="mt-1 block text-h3 font-display font-semibold">
                   {site.phone}
                 </a>
               </div>
               <div>
                 <p className="micro text-current/70">Email</p>
-                <a href={site.emailHref} className="mt-1 block text-h3 font-[var(--font-display)] font-semibold">
+                <a href={site.emailHref} className="mt-1 block text-h3 font-display font-semibold">
                   {site.email}
                 </a>
               </div>
               <div>
                 <p className="micro text-current/70">Location</p>
-                <p className="mt-1 text-h3 font-[var(--font-display)] font-semibold">{site.location.label}</p>
+                <p className="mt-1 text-h3 font-display font-semibold">{site.location.label}</p>
               </div>
               <JmClock />
             </div>

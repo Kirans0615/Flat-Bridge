@@ -41,7 +41,7 @@ export default function CapabilitiesRail() {
       <div className="grid grid-cols-1 gap-10 px-[clamp(1.25rem,5vw,6rem)] md:grid-cols-12 md:gap-8">
         <div className="md:col-span-3">
           <div className="md:sticky md:top-24">
-            <h2 className="text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
+            <h2 className="text-h2 font-display font-semibold tracking-[-0.03em]">
               Twenty-four things we take off your desk
             </h2>
             <div className="mt-8 flex items-baseline gap-1 font-mono text-small">
@@ -95,7 +95,7 @@ function RailPanel({ service, active }: { service: Service; active: boolean }) {
       <div>
         <h3
           className={cn(
-            "text-h3 font-[var(--font-display)] transition-colors duration-300",
+            "text-h3 font-display transition-colors duration-300",
             active ? "text-[var(--color-ink)]" : "text-current/70"
           )}
         >
@@ -147,7 +147,7 @@ function StaticGrid() {
       {services.map((service) => (
         <div key={service.slug} className="flex flex-col justify-between border-b border-r border-[var(--color-hairline)] p-6">
           <div>
-            <h3 className="text-h3 font-[var(--font-display)]">{service.name}</h3>
+            <h3 className="text-h3 font-display">{service.name}</h3>
             <p className="mt-3 text-small text-current/70">{service.lede}</p>
           </div>
           <Link href={`/services/${service.slug}`} data-cursor="link" className="mt-6 w-fit text-small font-medium">

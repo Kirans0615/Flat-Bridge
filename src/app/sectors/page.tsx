@@ -24,9 +24,16 @@ export function generateMetadata(): Metadata {
 export default function SectorsPage() {
   return (
     <main id="main">
-      {/* Hero */}
-      <Section tone="ink" id="sectors-hero" className="!py-0">
-        <div className="relative flex min-h-[60vh] flex-col justify-end overflow-hidden px-[clamp(1.25rem,5vw,6rem)] py-[clamp(4rem,8vw,7rem)]">
+      {/* Paper strip above the hero so the floating navbar reads dark on light
+          (same as Case Studies / Services / About / the sector detail pages) */}
+      <div aria-hidden="true" data-tone="paper" className="h-20 bg-[var(--color-paper)]" />
+
+      {/* Hero: photo covers the whole section, edge to edge */}
+      <Section tone="ink" id="sectors-hero" className="overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-[var(--color-ink)]"
+        >
           <Image
             src={media.port["2400"]}
             alt=""
@@ -37,28 +44,27 @@ export default function SectorsPage() {
             sizes="100vw"
           />
           <div
-            aria-hidden="true"
             className="absolute inset-0"
             style={{
               background:
                 "linear-gradient(to top, var(--color-abyss) 5%, rgba(5,18,26,0.55) 55%, rgba(5,18,26,0.25) 100%)",
             }}
           />
-          <div className="relative z-10">
-            <SplitText
-              as="h1"
-              mode="line"
-              className="max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold text-white"
-            >
-              Tailored solutions for varied sectors
-            </SplitText>
-            <Reveal delay={0.2}>
-              <p className="mt-4 max-w-[56ch] text-body-lg text-[var(--color-concrete)]">
-                At Flat Bridge, we take pride in delivering tailored logistics solutions that cater to the
-                distinct demands of various industries.
-              </p>
-            </Reveal>
-          </div>
+        </div>
+        <div className="relative z-10 max-w-[56rem]">
+          <SplitText
+            as="h1"
+            mode="line"
+            className="max-w-[24ch] text-h1 font-display font-semibold text-white"
+          >
+            Tailored solutions for varied sectors
+          </SplitText>
+          <Reveal delay={0.2}>
+            <p className="mt-4 max-w-[56ch] text-body-lg text-[var(--color-concrete)]">
+              At Flat Bridge, we take pride in delivering tailored logistics solutions that cater to the
+              distinct demands of various industries.
+            </p>
+          </Reveal>
         </div>
       </Section>
 
@@ -92,7 +98,7 @@ export default function SectorsPage() {
               </div>
               <div className={`lg:col-span-5 ${reversed ? "lg:order-1 lg:col-start-1" : "lg:col-start-8"}`}>
                 <Reveal as="div">
-                  <h2 className="text-h2 font-[var(--font-display)] font-semibold">{sector.name}</h2>
+                  <h2 className="text-h2 font-display font-semibold">{sector.name}</h2>
                   <p className="mt-4 max-w-[52ch] text-body-lg">{sector.promise}</p>
                   <ul className="mt-6 flex flex-col gap-2">
                     {sector.serviceSlugs.slice(0, 3).map((slug) => {
@@ -128,7 +134,7 @@ export default function SectorsPage() {
             <SplitText
               as="p"
               mode="line"
-              className="text-h2 font-[var(--font-display)] font-semibold text-white"
+              className="text-h2 font-display font-semibold text-white"
             >
               {`"${pullQuotes.jpMorgan.text}"`}
             </SplitText>
@@ -148,29 +154,11 @@ export default function SectorsPage() {
                 value={stat.value}
                 suffix={stat.suffix}
                 decimals={stat.decimals}
-                className="text-d2 font-[var(--font-display)] font-semibold"
+                className="text-d2 font-display font-semibold"
               />
               <p className="mt-2 text-small text-current/70">{stat.label}</p>
             </div>
           ))}
-        </div>
-      </Section>
-
-      {/* CTA band */}
-      <Section tone="ink" id="cta">
-        <h2 className="text-h2 font-[var(--font-display)] font-semibold text-white">
-          Ready to hand something off?
-        </h2>
-        <p className="mt-3 max-w-[52ch] text-body-lg text-[var(--color-concrete)]">
-          Tell us the function that&apos;s costing you the most hours. We&apos;ll scope it on the call.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-4">
-          <Button href="/contact" variant="solid">
-            Book a discovery call
-          </Button>
-          <Button href="/services" variant="ghost">
-            See our capabilities
-          </Button>
         </div>
       </Section>
     </main>

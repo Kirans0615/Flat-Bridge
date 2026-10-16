@@ -47,7 +47,7 @@ export default function Testimonials() {
       <div className="flex flex-wrap items-end justify-between gap-6">
         <div>
           <Eyebrow>Testimonials</Eyebrow>
-          <h2 className="mt-4 text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
+          <h2 className="mt-4 text-h2 font-display font-semibold tracking-[-0.03em]">
             What partners say
           </h2>
         </div>
@@ -73,7 +73,7 @@ export default function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <div key={index} className="min-w-0 flex-[0_0_100%]" aria-hidden={index !== selectedIndex}>
               <blockquote className="max-w-[68ch]">
-                <p className="text-h3 font-[var(--font-display)] leading-snug">
+                <p className="text-h3 font-display leading-snug">
                   <span aria-hidden="true" className="mr-1 text-[var(--color-green-lift)]">
                     [
                   </span>

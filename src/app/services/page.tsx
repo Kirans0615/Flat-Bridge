@@ -45,7 +45,7 @@ export default function ServicesPage() {
           />
         </div>
         <div className="relative z-10 max-w-[56rem]">
-          <h1 className="max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold text-white">
+          <h1 className="max-w-[24ch] text-h1 font-display font-semibold text-white">
             Twenty-four capabilities. Your unique service package.
           </h1>
           <p className="mt-4 max-w-[56ch] text-body-lg text-[var(--color-concrete)]">

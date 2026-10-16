@@ -31,7 +31,7 @@ export default function FeaturedCapabilities() {
       className="pb-[clamp(3rem,6vw,5.5rem)] bg-[linear-gradient(180deg,#f2f3f1_0%,#c5dbb5_100%)]"
     >
       <Eyebrow>Featured capabilities</Eyebrow>
-      <h2 className="mt-4 max-w-[36ch] text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
+      <h2 className="mt-4 max-w-[36ch] text-h2 font-display font-semibold tracking-[-0.03em]">
         Four things clients ask for first
       </h2>
 
@@ -52,7 +52,7 @@ export default function FeaturedCapabilities() {
               aria-hidden="true"
               className="absolute inset-0 -z-10 origin-left scale-x-0 bg-[var(--color-paper-2)] transition-transform duration-[380ms] ease-[var(--ease-out)] group-hover:scale-x-100"
             />
-            <h3 className="text-h3 font-[var(--font-display)] transition-transform duration-300 group-hover:translate-x-1.5">
+            <h3 className="text-h3 font-display transition-transform duration-300 group-hover:translate-x-1.5">
               {service.name}
             </h3>
             <p className="mt-4 max-w-[52ch] text-body text-current/70">{service.body}</p>

@@ -27,7 +27,7 @@ export default function Differentiators() {
         <div className="md:col-span-4">
           <div className="md:sticky md:top-[40vh]">
             <Eyebrow>{differentiators.label}</Eyebrow>
-            <h2 className="mt-4 text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
+            <h2 className="mt-4 text-h2 font-display font-semibold tracking-[-0.03em]">
               {differentiators.h2}
             </h2>
           </div>
@@ -40,7 +40,7 @@ export default function Differentiators() {
               className={cn("border-[var(--color-steel-700)] py-10", index > 0 && "border-t")}
             >
               <Reveal as="div" delay={index * 0.06}>
-                <h3 className="text-h3 font-[var(--font-display)]">{row.heading}</h3>
+                <h3 className="text-h3 font-display">{row.heading}</h3>
                 <p className="mt-4 max-w-[68ch] text-body text-[var(--color-concrete)]">{row.body}</p>
               </Reveal>
             </div>

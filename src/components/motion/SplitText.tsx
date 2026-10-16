@@ -6,7 +6,6 @@ import SplitTypeLib from "split-type";
 
 import { E, STAGGER } from "@/lib/motion-tokens";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
-import { cn } from "@/lib/utils";
 
 type SplitMode = "word" | "char" | "line";
 
@@ -136,7 +135,7 @@ export function SplitText({
   }
 
   return (
-    <Tag ref={containerRef} className={cn(className)}>
+    <Tag ref={containerRef} className={className}>
       {children}
     </Tag>
   );

@@ -39,7 +39,7 @@ export default function BookACall() {
     <Section tone="ink" id="book-a-call">
       <div className="grid grid-cols-1 gap-16 md:grid-cols-12">
         <div className="md:col-span-5">
-          <h2 className="max-w-[20ch] text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
+          <h2 className="max-w-[20ch] text-h2 font-display font-semibold tracking-[-0.03em]">
             Tell us what&apos;s eating your week.
           </h2>
 

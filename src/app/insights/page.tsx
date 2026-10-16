@@ -31,7 +31,7 @@ export default function InsightsPage() {
       <Section tone="ink" id="insights-hero" className="overflow-hidden">
         <SectionVideoBg src={media.insightsVideo} overlayOpacity={0.7} />
         <div className="relative z-10">
-          <h1 className="max-w-[24ch] text-h1 font-[var(--font-display)] font-semibold">Insights</h1>
+          <h1 className="max-w-[24ch] text-h1 font-display font-semibold">Insights</h1>
           <p className="mt-4 max-w-[56ch] text-body-lg text-current/70">
             Notes from the operations side of logistics BPO.
           </p>
@@ -58,7 +58,7 @@ export default function InsightsPage() {
                   </Link>
                 </div>
                 <Reveal as="div">
-                  <h2 className="mt-4 text-h2 font-[var(--font-display)] font-semibold text-white">
+                  <h2 className="mt-4 text-h2 font-display font-semibold text-white">
                     <Link href={`/insights/${post.slug}`} data-cursor="link">
                       {post.title}
                     </Link>
@@ -95,7 +95,7 @@ export default function InsightsPage() {
 
       <Section tone="paper" id="subscribe">
         <Eyebrow>More on the way</Eyebrow>
-        <h2 className="mt-3 max-w-[32ch] text-h2 font-[var(--font-display)] font-semibold">
+        <h2 className="mt-3 max-w-[32ch] text-h2 font-display font-semibold">
           More writing is on the way. Tell us what you&apos;d want us to cover.
         </h2>
         <form className="mt-6 flex max-w-md flex-col gap-3 sm:flex-row" aria-label="Notify me of new insights">

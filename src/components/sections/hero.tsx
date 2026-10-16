@@ -207,7 +207,7 @@ export default function Hero() {
                 alone since not-found.tsx's "404" also uses it and wasn't
                 flagged. */}
             <h1
-              className="mt-6 font-[var(--font-display)] font-semibold leading-[0.98] tracking-[-0.03em] text-white"
+              className="mt-6 font-display font-semibold leading-[0.98] tracking-[-0.03em] text-white"
               style={{ fontSize: "clamp(3rem, 6vw, 6rem)" }}
             >
               <span className="block overflow-hidden pb-[0.18em] -mb-[0.18em]">

@@ -66,7 +66,7 @@ export default async function InsightPage({
           </Link>
         </div>
 
-        <h1 className="mt-4 max-w-[32ch] text-h1 font-[var(--font-display)] font-semibold">{post.title}</h1>
+        <h1 className="mt-4 max-w-[32ch] text-h1 font-display font-semibold">{post.title}</h1>
 
         <Reveal>
           <div className="mx-auto mt-10 max-w-[68ch]">

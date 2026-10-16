@@ -42,7 +42,7 @@ export default function Nearshore() {
 
         <div className="md:col-span-6 md:col-start-7">
           <Eyebrow>Nearshore</Eyebrow>
-          <h2 className="mt-4 text-h2 font-[var(--font-display)] font-semibold tracking-[-0.03em]">
+          <h2 className="mt-4 text-h2 font-display font-semibold tracking-[-0.03em]">
             {nearshore.h2}
           </h2>
           <p className="mt-4 max-w-[56ch] text-body-lg text-current/70">{nearshore.body}</p>

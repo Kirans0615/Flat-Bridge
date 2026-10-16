@@ -38,7 +38,7 @@ export const site = {
 
 export const heroContent = {
   kicker: "Flat Bridge Ltd · Mandeville, Jamaica",
-  h1Line1: "Built to carry the load",
+  h1Line1: "Built To Carry The Load.",
   sub: "Strategic and skilled supply chain and logistics BPO. We handle the load boards, check calls, appointments, troubleshooting, and claims — so your team can grow your business.",
   /** Legacy subhead, kept for client comparison per brief §8.1 — not shipped as primary copy. */
   heroSubAlt:

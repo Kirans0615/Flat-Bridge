@@ -6,8 +6,9 @@ import { media } from "@/lib/media";
 import { Section, Eyebrow } from "@/components/ui/section";
 import { SectionVideoBg } from "@/components/sections/section-video-bg";
 import { Reveal, ClipReveal } from "@/components/motion";
-import { ApplicationForm } from "@/components/sections/application-form";
+import { Button } from "@/components/ui/button";
 import { roles, careersLede } from "@/content/careers";
+import { site } from "@/content/site";
 
 export function generateMetadata(): Metadata {
   return baseMetadata({
@@ -56,8 +57,8 @@ export default function CareersPage() {
       <Section tone="ink" id="careers-hero" className="overflow-hidden">
         <SectionVideoBg src={media.careersVideo} overlayOpacity={0.7} />
         <div className="relative z-10 max-w-[44rem]">
-          <h1 className="text-h1 font-[var(--font-display)] font-semibold text-white">
-            Build a career in logistics, from Mandeville.
+          <h1 className="text-h1 font-display font-semibold text-white">
+            Build a career in logistics.
           </h1>
           <Reveal delay={0.15}>
             <p className="mt-4 max-w-[60ch] text-body-lg text-[var(--color-concrete)]">{careersLede}</p>
@@ -75,7 +76,7 @@ export default function CareersPage() {
           {whatItsLikeHere.map((item) => (
             <Reveal key={item.title} as="div">
               <div className="border-t border-[var(--color-hairline)] pt-5">
-                <h2 className="text-h3 font-[var(--font-display)] font-semibold">{item.title}</h2>
+                <h2 className="text-h3 font-display font-semibold">{item.title}</h2>
                 {item.items ? (
                   <ul className="mt-3 flex flex-col gap-2">
                     {item.items.map((line) => (
@@ -100,7 +101,7 @@ export default function CareersPage() {
       {/* Open roles */}
       <Section tone="ink" id="open-roles">
         <Eyebrow>Open roles</Eyebrow>
-        <h2 className="mt-3 text-h2 font-[var(--font-display)] font-semibold text-white">
+        <h2 className="mt-3 text-h2 font-display font-semibold text-white">
           Current openings
         </h2>
         <div
@@ -116,7 +117,7 @@ export default function CareersPage() {
               <details key={role.slug} className="group py-6">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4">
                   <div>
-                    <p className="text-h3 font-[var(--font-display)] font-semibold text-white">
+                    <p className="text-h3 font-display font-semibold text-white">
                       {role.title}
                     </p>
                     <p className="mt-1 text-small text-current/70">
@@ -144,7 +145,7 @@ export default function CareersPage() {
                     ))}
                   </ul>
                   <a
-                    href="#apply"
+                    href={`${site.emailHref}?subject=${encodeURIComponent(`Application: ${role.title}`)}`}
                     className="mt-5 inline-block border-b border-[var(--color-green-lift)] text-body-lg text-white"
                   >
                     Apply for this role
@@ -155,8 +156,8 @@ export default function CareersPage() {
           </div>
         ) : (
           <p className="mt-8 max-w-[56ch] text-body-lg text-[var(--color-concrete)]">
-            No specific openings are listed right now — send a general application below and we&apos;ll be
-            in touch when a role fits.
+            No specific openings are listed right now — reach out below and we&apos;ll be in touch when a
+            role fits.
           </p>
         )}
       </Section>
@@ -171,14 +172,18 @@ export default function CareersPage() {
         </p>
       </Section>
 
-      {/* Application form */}
+      {/* Explore opportunities */}
       <Section tone="ink" id="apply">
-        <Eyebrow>Apply</Eyebrow>
-        <h2 className="mt-3 text-h2 font-[var(--font-display)] font-semibold text-white">
-          Send us your application
+        <h2 className="text-h2 font-display font-semibold text-white">
+          Explore opportunities
         </h2>
-        <div className="mt-8 max-w-2xl">
-          <ApplicationForm />
+        <p className="mt-3 max-w-[52ch] text-body-lg text-[var(--color-concrete)]">
+          Click the link below to view our current openings and find the role that&apos;s right for you.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-4">
+          <Button href="#open-roles" variant="solid">
+            View current openings
+          </Button>
         </div>
       </Section>
     </main>

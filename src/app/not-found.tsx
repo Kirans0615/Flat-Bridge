@@ -16,7 +16,7 @@ export default function NotFound() {
           <rect x="136" y="23" width="6" height="6" transform="rotate(45 139 26)" fill="currentColor" />
         </svg>
 
-        <h1 className="text-d1 font-[var(--font-display)] font-semibold text-white">404</h1>
+        <h1 className="text-d1 font-display font-semibold text-white">404</h1>
         <p className="mt-4 max-w-[44ch] text-body-lg text-[var(--color-concrete)]">
           Something snapped — this cable doesn&apos;t reach a page.
         </p>

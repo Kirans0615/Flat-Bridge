@@ -32,12 +32,12 @@ import { cn } from "@/lib/utils";
  * close hover-intent, Escape + a lightweight focus trap); mobile collapses
  * to a full-screen sheet.
  *
- * Services dropdown (10.09.26 revision round, Part 1.2) — a compact,
- * traditional list: "All 24 capabilities" plus the 4 categories from
- * `@/content/services`'s `serviceCategories`, each linking to
- * `/services?category=<id>`. No description paragraphs. Sectors mega-menu
- * (Part 5.1) now leads with an "All sectors" item at the top, linking to the
- * `/sectors` landing page, above the per-sector grid.
+ * Services and Sectors dropdowns share one compact list format: a bold
+ * "All ..." link at the top (linking to `/services?category=all` /
+ * `/sectors`), a divider, then the category/sector links below — no
+ * description paragraphs. The "Services"/"Sectors" triggers are real links
+ * to their landing pages (not click-to-toggle buttons); the mega-menu still
+ * opens on hover-intent.
  */
 
 const FLOAT_THRESHOLD_RATIO = 0.88;
@@ -67,7 +67,6 @@ function isHome(href: string): boolean {
 const SECTOR_LINKS = sectors.map((s) => ({
   name: s.name,
   href: `/sectors/${s.slug}`,
-  promise: s.promise,
 }));
 
 type MegaMenu = "services" | "sectors" | null;
@@ -108,6 +107,7 @@ export function Nav() {
   const reducedMotion = useReducedMotion();
 
   const [isFloating, setIsFloating] = useState(false);
+  const [hasBackground, setHasBackground] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [tone, setTone] = useState<Tone>("ink");
   const [openMenu, setOpenMenu] = useState<MegaMenu>(null);
@@ -116,8 +116,8 @@ export function Nav() {
   const lastScrollYRef = useRef(0);
   const openTimerRef = useRef<number | undefined>(undefined);
   const closeTimerRef = useRef<number | undefined>(undefined);
-  const servicesTriggerRef = useRef<HTMLButtonElement>(null);
-  const sectorsTriggerRef = useRef<HTMLButtonElement>(null);
+  const servicesTriggerRef = useRef<HTMLAnchorElement>(null);
+  const sectorsTriggerRef = useRef<HTMLAnchorElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
@@ -130,7 +130,14 @@ export function Nav() {
       ticking = true;
       requestAnimationFrame(() => {
         const y = window.scrollY;
-        setIsFloating(y > window.innerHeight * FLOAT_THRESHOLD_RATIO);
+        const floating = y > window.innerHeight * FLOAT_THRESHOLD_RATIO;
+        setIsFloating(floating);
+        // Scrolling down past HIDE_THRESHOLD_PX hides the nav; scrolling back up
+        // re-shows it instantly at that same depth, which is almost always well
+        // into body copy, not the hero — so the background has to be on by that
+        // same threshold, not just once the (much later) floating-pill state
+        // kicks in, or the reappearing nav sits fully transparent over text.
+        setHasBackground(floating || y > HIDE_THRESHOLD_PX);
         if (y > HIDE_THRESHOLD_PX && y > lastScrollYRef.current) {
           setHidden(true);
         } else {
@@ -215,10 +222,10 @@ export function Nav() {
   }, []);
 
   // Tone comes from whichever data-tone section sits under the nav (top ~6% of the
-  // viewport), in both the transparent and floating states — otherwise light-topped pages
+  // viewport), in both the transparent and backed states — otherwise light-topped pages
   // (services, contact, ...) render concrete-on-paper and the nav vanishes.
   const isPaper = tone === "paper";
-  const isPaperFloating = isFloating && isPaper;
+  const isPaperBg = hasBackground && isPaper;
   // 10.09.26 revision round, Part 1.1 — white logo on dark/photo backgrounds
   // (legible against any photo or the ink tone), the existing legible
   // black+green mark stays on light backgrounds.
@@ -239,11 +246,15 @@ export function Nav() {
             isFloating
               ? "mt-4 max-w-6xl rounded-lg border px-5 py-3 backdrop-blur-xl"
               : "max-w-none border-transparent px-6 py-5 sm:px-10",
+            // Not yet floating, but scrolled past the hero — still full-width,
+            // just with the same tone-matched blurred scrim so body copy never
+            // shows through the nav text.
+            hasBackground && !isFloating && "border-b backdrop-blur-xl",
           )}
           style={
-            isFloating
+            hasBackground
               ? {
-                  backgroundColor: isPaperFloating
+                  backgroundColor: isPaperBg
                     ? "rgba(242,243,241,0.78)"
                     : "rgba(7,20,30,0.72)",
                   borderColor: "var(--color-hairline)",
@@ -286,13 +297,12 @@ export function Nav() {
                     onMouseEnter={() => openWithIntent(menu)}
                     onMouseLeave={closeWithIntent}
                   >
-                    <button
+                    <Link
                       ref={triggerRef}
-                      type="button"
+                      href={item.href}
                       data-cursor="link"
                       aria-expanded={openMenu === menu}
                       aria-haspopup="true"
-                      onClick={() => setOpenMenu((prev) => (prev === menu ? null : menu))}
                       className={cn(
                         NAV_ITEM, "transition-colors hover:text-[var(--color-green-lift)]",
                         linkColor,
@@ -300,7 +310,7 @@ export function Nav() {
                     >
                       {item.label}
                       <NavChevron open={openMenu === menu} />
-                    </button>
+                    </Link>
 
                     <AnimatePresence>
                       {openMenu === menu && (
@@ -313,10 +323,7 @@ export function Nav() {
                           animate={reducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
                           exit={reducedMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
                           transition={{ duration: D.xs, ease: E.out }}
-                          className={cn(
-                            "absolute left-1/2 top-full mt-3 -translate-x-1/2 rounded-lg border border-[var(--color-hairline)] bg-[var(--color-paper)] text-[var(--color-ink)] shadow-xl",
-                            menu === "services" ? "w-[min(90vw,280px)] p-2" : "w-[min(90vw,720px)] p-6",
-                          )}
+                          className="absolute left-1/2 top-full mt-3 w-[min(90vw,280px)] -translate-x-1/2 rounded-lg border border-[var(--color-hairline)] bg-[var(--color-paper)] p-2 text-[var(--color-ink)] shadow-xl"
                         >
                           {menu === "services" ? <ServicesMegaMenu /> : <SectorsMegaMenu />}
                         </motion.div>
@@ -426,36 +433,23 @@ function ServicesMegaMenu() {
 
 function SectorsMegaMenu() {
   return (
-    <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
-      {/* 10.09.26 revision round, Part 5.1 — "All sectors" leads the
-          dropdown so the /sectors landing page is reachable without
-          picking an individual sector first. */}
-      <div className="col-span-full mb-2 border-b border-[var(--color-hairline)] pb-3">
-        <Link
-          href="/sectors"
-          data-cursor="link"
-          className="micro font-medium text-[var(--color-green)] hover:text-[var(--color-green-deep)]"
-        >
-          All sectors
-        </Link>
-      </div>
+    <div className="flex flex-col gap-1" role="none">
+      <Link
+        href="/sectors"
+        data-cursor="link"
+        className="rounded-md px-3 py-2.5 text-small font-semibold text-[var(--color-green)] transition-colors hover:bg-[var(--color-paper-2)]"
+      >
+        All sectors
+      </Link>
+      <div className="my-1 border-t border-[var(--color-hairline)]" />
       {SECTOR_LINKS.map((sector) => (
         <Link
           key={sector.href}
           href={sector.href}
-          data-cursor="view"
-          className="group flex flex-col justify-center rounded-md px-3 py-2.5 transition-colors hover:bg-[var(--color-paper-2)]"
+          data-cursor="link"
+          className="rounded-md px-3 py-2.5 text-small font-medium text-current transition-colors hover:bg-[var(--color-paper-2)]"
         >
-          <span className="flex items-center justify-between">
-            <span className="text-small font-medium">{sector.name}</span>
-            <span
-              aria-hidden="true"
-              className="h-px w-4 bg-[var(--color-green)] opacity-0 transition-opacity group-hover:opacity-100"
-            />
-          </span>
-          <span className="mt-0.5 text-small text-current/70 line-clamp-1">
-            {sector.promise}
-          </span>
+          {sector.name}
         </Link>
       ))}
     </div>
