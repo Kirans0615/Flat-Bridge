@@ -145,7 +145,9 @@ export default function CareersPage() {
                     ))}
                   </ul>
                   <a
-                    href={`${site.emailHref}?subject=${encodeURIComponent(`Application: ${role.title}`)}`}
+                    href="https://flat-bridge.breezy.hr/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="mt-5 inline-block border-b border-[var(--color-green-lift)] text-body-lg text-white"
                   >
                     Apply for this role
